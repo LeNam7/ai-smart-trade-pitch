@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Smart-Trade | Haute Horlogerie of Quantitative Trading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            electricCyan: {
+              400: '#D96B43', // Warm Terracotta Light
+              500: '#C25E38', // Warm Terracotta Brand
+              600: '#BA4A1B', // Deep Terracotta / Cam Đất
+            },
+            royalIndigo: {
+              400: '#D99B52', // Warm Honey Ochre
+              500: '#C07A28', // Rich Ochre Clay
+              600: '#A36219',
+            },
+            quantumMint: {
+              400: '#4D8B6F', // Muted Eucalyptus
+              500: '#2D6A4F', // Deep Forest Sage / Jade
+              600: '#235A42',
+            },
+            crimsonCoral: {
+              400: '#CD5C4E', // Terracotta Rust
+              500: '#B94435', // Deep Earth Rust
+              600: '#9E3224',
+            },
+            midnight: {
+              800: '#3D342D', // Warm Charcoal Taupe
+              850: '#2E2621',
+              900: '#231C18', // Deep Warm Espresso
+              950: '#1A1412',
+            }
+          },
+          animation: {
+            'breathe-subtle': 'breathe 6s ease-in-out infinite',
+            'sheen-sweep': 'sheenSweep 3.5s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
+            'float-smooth': 'floatSmooth 5s ease-in-out infinite',
+            'radar-sweep': 'radarSweep 4s linear infinite',
+            'ecg-pulse': 'ecgPulse 1.8s ease-in-out infinite',
+          },
+          keyframes: {
+            breathe: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.015)' },
+            },
+            floatSmooth: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-5px)' },
+            },
+            sheenSweep: {
+              '0%': { transform: 'translateX(-150%) skewX(-20deg)' },
+              '20%, 100%': { transform: 'translateX(250%) skewX(-20deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.9' },
+            },
+            radarSweep: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+            ecgPulse: {
+              '0%, 100%': { opacity: '0.7', transform: 'scaleY(1)' },
+              '50%': { opacity: '1', transform: 'scaleY(1.15)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* =========================================================
+       WARM NUDE & TERRACOTTA ARCHITECTURAL PALETTE (CAM ĐẤT DỊU ẤM)
+       ========================================================= */
+    :root {
+      --bg-base: #FAF6F0; /* Sáng dịu mà ấm kiểu màu da hơi cam đất */
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #F5EFE9;
+      --bg-surface-inset: #F7F2EC;
+      --border-subtle: #E8DFD5;
+      --border-warm: #E2CFBE;
+      --border-cyan: rgba(186, 74, 27, 0.35);
+      --text-main: #231C18; /* Deep rich charcoal espresso */
+      --text-body: #52453E; /* Warm coffee body text */
+      --text-muted: #7D6E65; /* Warm earth taupe */
+      --cyan-primary: #BA4A1B; /* Cam Đất / Terracotta */
+      --cyan-gradient: linear-gradient(135deg, #BA4A1B 0%, #D96B43 100%);
+      --aurora-gradient: linear-gradient(135deg, #C07A28 0%, #D99B52 100%);
+      --mint-gradient: linear-gradient(135deg, #2D6A4F 0%, #4D8B6F 100%);
+      --coral-gradient: linear-gradient(135deg, #B94435 0%, #CD5C4E 100%);
+      --grid-line: rgba(75, 52, 38, 0.045);
+    }
+
+    body {
+      background-color: var(--bg-base) !important;
+      color: var(--text-main) !important;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Architectural Ambient Noise & Mesh (Warm Nude Linen) */
+    .obsidian-grain {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    }
+
+    /* Ambient Warm Terracotta & Honey Sun Pools */
+    .nebula-orb-cyan {
+      position: absolute;
+      width: 750px;
+      height: 460px;
+      background: radial-gradient(circle, rgba(217, 107, 67, 0.09) 0%, rgba(250, 246, 240, 0) 70%);
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .nebula-orb-indigo {
+      position: absolute;
+      width: 650px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(224, 169, 109, 0.12) 0%, rgba(250, 246, 240, 0) 70%);
+      bottom: -100px;
+      right: 10%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating White Cards with Warm Multi-tier Elevation Shadows */
+    .boutique-card {
+      background: #FFFFFF !important;
+      border: 1px solid #E8DFD5 !important;
+      box-shadow: 
+        0 1px 3px 0 rgba(45, 34, 27, 0.03),
+        0 10px 25px -5px rgba(45, 34, 27, 0.06),
+        0 24px 48px -12px rgba(186, 74, 27, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+      backdrop-filter: blur(16px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .boutique-card:hover {
+      transform: translateY(-4px) scale(1.01) !important;
+      border-color: #D96B43 !important;
+      box-shadow: 
+        0 4px 6px -1px rgba(45, 34, 27, 0.04),
+        0 16px 36px -4px rgba(45, 34, 27, 0.09),
+        0 32px 64px -12px rgba(186, 74, 27, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
+
+    /* High-contrast Title Gradients for Warm Nude/Terracotta Theme */
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #BA4A1B 0%, #D96B43 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+    .text-gradient-coral {
+      background: linear-gradient(135deg, #B94435 0%, #CD5C4E 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+    .text-gradient-mint {
+      background: linear-gradient(135deg, #2D6A4F 0%, #4D8B6F 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+    .text-gradient-aurora {
+      background: linear-gradient(135deg, #C07A28 0%, #D99B52 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    /* Inset Preview & Metric Boxes */
+    .bg-midnight-950, .bg-midnight-950\/90, .bg-midnight-900, .bg-midnight-850,
+    .bg-obsidian-950, .bg-obsidian-900, .bg-obsidian-850, .bg-obsidian-800 {
+      background-color: #F7F2EC !important;
+      border-color: #E8DFD5 !important;
+      box-shadow: inset 0 1px 2px rgba(45, 34, 27, 0.035);
+    }
+
+    /* Text Colors for Crisp Warm Readability */
+    .text-white {
+      color: #231C18 !important;
+    }
+    .text-slate-400 {
+      color: #7D6E65 !important;
+    }
+    .text-slate-300 {
+      color: #52453E !important;
+    }
+    .text-slate-200 {
+      color: #382E28 !important;
+    }
+    .border-white\/\[0\.05\], .border-white\/10, .border-white\/20 {
+      border-color: #E8DFD5 !important;
+    }
+
+    /* Header & Floating Navigation Dock */
+    header {
+      background: rgba(250, 246, 240, 0.92) !important;
+      backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid #E8DFD5 !important;
+      box-shadow: 0 1px 4px rgba(45, 34, 27, 0.03) !important;
+    }
+    header .text-white {
+      color: #231C18 !important;
+    }
+    header .bg-midnight-900, header .bg-midnight-950 {
+      background-color: #F5EFE9 !important;
+    }
+
+    #dockContainer {
+      background: rgba(255, 255, 255, 0.96) !important;
+      backdrop-filter: blur(20px) !important;
+      border: 1px solid #E6DDD2 !important;
+      box-shadow: 
+        0 10px 30px -5px rgba(45, 34, 27, 0.1),
+        0 4px 8px -2px rgba(45, 34, 27, 0.05) !important;
+      color: #231C18 !important;
+    }
+    #dockContainer button {
+      color: #52453E !important;
+    }
+    #dockContainer button:hover {
+      color: #BA4A1B !important;
+    }
+    #dockSlideNum {
+      color: #231C18 !important;
+    }
+
+    /* Secondary / Back Buttons */
+    button.border-white\/10, button.border-white\/20 {
+      background-color: #FFFFFF !important;
+      color: #52453E !important;
+      border-color: #E8DFD5 !important;
+      box-shadow: 0 1px 2px rgba(45, 34, 27, 0.04) !important;
+    }
+    button.border-white\/10:hover, button.border-white\/20:hover {
+      background-color: #F5EFE9 !important;
+      color: #231C18 !important;
+      border-color: #D96B43 !important;
+    }
+
+    /* Badges */
+    .anim-badge {
+      background-color: #FDF3EE !important;
+      border-color: #F3D2C4 !important;
+      color: #BA4A1B !important;
+      box-shadow: 0 1px 2px rgba(45, 34, 27, 0.03) !important;
+    }
+    #slide-4 .anim-badge {
+      background-color: #FDF3F0 !important;
+      border-color: #F4D3CE !important;
+      color: #B94435 !important;
+    }
+
+    /* Slide 1 Two-Realities Theater (Warm Terracotta & Sage) */
+    #slide-1 .from-crimsonCoral-500\/10 {
+      background: linear-gradient(180deg, #FDF3F0 0%, #FFFFFF 100%) !important;
+      border-color: #F4D3CE !important;
+      box-shadow: 0 8px 24px -4px rgba(185, 68, 53, 0.08) !important;
+    }
+    #slide-1 .bg-midnight-950 {
+      background-color: #F7F2EC !important;
+    }
+
+    /* Slide 4 Monolith Cards */
+    #slide-4 .border-crimsonCoral-500\/25 {
+      border-color: #F4D3CE !important;
+      box-shadow: 
+        0 1px 3px 0 rgba(45, 34, 27, 0.03),
+        0 10px 25px -5px rgba(185, 68, 53, 0.07),
+        0 20px 48px -12px rgba(185, 68, 53, 0.05) !important;
+    }
+
+    /* Slide 10 Metrics */
+    #slide-10 .border-quantumMint-500\/30 {
+      border-color: #C6DFD2 !important;
+      box-shadow: 0 10px 25px -5px rgba(45, 106, 79, 0.08) !important;
+    }
+    #slide-10 .border-electricCyan-500\/30 {
+      border-color: #F3D2C4 !important;
+      box-shadow: 0 10px 25px -5px rgba(186, 74, 27, 0.08) !important;
+    }
+    #slide-10 .border-royalIndigo-500\/30 {
+      border-color: #EDDBC4 !important;
+      box-shadow: 0 10px 25px -5px rgba(192, 122, 40, 0.08) !important;
+    }
+
+    /* Primary buttons and filled badges retain crisp white text */
+    button.bg-\[\#BA4A1B\],
+    button.bg-\[\#BA4A1B\] *,
+    button.bg-electricCyan-600,
+    button.bg-electricCyan-600 *,
+    .btn-terracotta,
+    .btn-terracotta *,
+    [class*="bg-[#BA4A1B]"],
+    [class*="bg-[#BA4A1B]"] * {
+      color: #FFFFFF !important;
+    }
+
+    /* Floating presentation dock */
+    #slideDeckNav {
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1px solid #E8DFD5 !important;
+      box-shadow: 0 12px 36px -4px rgba(45, 34, 27, 0.12), 0 4px 12px rgba(45, 34, 27, 0.05) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+    #slideDeckNav button {
+      color: #52453E !important;
+    }
+    #slideDeckNav button:hover {
+      background-color: #F7F2EC !important;
+      color: #BA4A1B !important;
+    }
+    #slideDeckNav div {
+      border-color: #E8DFD5 !important;
+      color: #231C18 !important;
+    }
+    #dockSlideNum {
+      color: #231C18 !important;
+    }
+
+    /* Slide Layout Container */
+    .slide-section {
+      display: none;
+      height: calc(100vh - 65px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0.75rem 1rem 7.5rem 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .slide-section::-webkit-scrollbar {
+      display: none;
+    }
+    .slide-section.active-slide {
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-inner-box {
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 100%;
+    }
+
+    /* =========================================================
+       CANVA-INSPIRED SIGNATURE PAGE-TURN TRANSITIONS
+       ========================================================= */
+
+    /* 1. Canva Flow */
+    .trans-canva-flow.slide-enter-right {
+      animation: canvaFlowRight 0.52s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+    }
+    .trans-canva-flow.slide-enter-left {
+      animation: canvaFlowLeft 0.52s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+    }
+    @keyframes canvaFlowRight {
+      0% { opacity: 0; transform: translate3d(85px, 0, 0) scale(0.95); filter: blur(6px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+    @keyframes canvaFlowLeft {
+      0% { opacity: 0; transform: translate3d(-85px, 0, 0) scale(0.95); filter: blur(6px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+
+    /* 2. Canva Rise */
+    .trans-canva-rise.slide-enter-right,
+    .trans-canva-rise.slide-enter-left {
+      animation: canvaRiseIn 0.54s cubic-bezier(0.16, 1.15, 0.3, 1) forwards;
+    }
+    @keyframes canvaRiseIn {
+      0% { opacity: 0; transform: translate3d(0, 50px, 0) scale(0.96); filter: blur(5px); }
+      75% { transform: translate3d(0, -3px, 0) scale(1.005); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+
+    /* 3. Canva Stack */
+    .trans-canva-stack.slide-enter-right {
+      animation: canvaStackRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .trans-canva-stack.slide-enter-left {
+      animation: canvaStackLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes canvaStackRight {
+      0% { opacity: 0.3; transform: translate3d(100%, 0, 0) scale(0.98); box-shadow: -30px 0 60px rgba(0, 0, 0, 0.7); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); box-shadow: none; }
+    }
+    @keyframes canvaStackLeft {
+      0% { opacity: 0.3; transform: translate3d(-100%, 0, 0) scale(0.98); box-shadow: 30px 0 60px rgba(0, 0, 0, 0.7); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); box-shadow: none; }
+    }
+
+    /* 4. Canva Wipe */
+    .trans-canva-wipe.slide-enter-right {
+      animation: canvaWipeRight 0.56s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    .trans-canva-wipe.slide-enter-left {
+      animation: canvaWipeLeft 0.56s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes canvaWipeRight {
+      0% { clip-path: inset(0 0 0 100%); opacity: 0.7; filter: brightness(1.2); }
+      100% { clip-path: inset(0 0 0 0); opacity: 1; filter: brightness(1); }
+    }
+    @keyframes canvaWipeLeft {
+      0% { clip-path: inset(0 100% 0 0); opacity: 0.7; filter: brightness(1.2); }
+      100% { clip-path: inset(0 0 0 0); opacity: 1; filter: brightness(1); }
+    }
+
+    /* 5. Canva Dissolve */
+    .trans-canva-dissolve.slide-enter-right,
+    .trans-canva-dissolve.slide-enter-left {
+      animation: canvaDissolve 0.5s ease-out forwards;
+    }
+    @keyframes canvaDissolve {
+      0% { opacity: 0; filter: blur(14px) brightness(1.2); transform: scale(0.97); }
+      100% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
+    }
+
+    /* 6. Canva Pop */
+    .trans-canva-pop.slide-enter-right,
+    .trans-canva-pop.slide-enter-left {
+      animation: canvaPopIn 0.52s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+    }
+    @keyframes canvaPopIn {
+      0% { opacity: 0; transform: scale(0.85); filter: blur(7px); }
+      70% { transform: scale(1.02); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+    }
+
+    /* =========================================================
+       CANVA & KEYNOTE MAGIC MOVE / MORPH TRANSITIONS
+       ========================================================= */
+    .morph-fade-left {
+      transform: translate3d(-120px, 0, 0) scale(0.94) !important;
+      opacity: 0 !important;
+      filter: blur(10px) !important;
+      transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease, filter 0.36s ease !important;
+      pointer-events: none !important;
+    }
+
+    .morph-glide-target {
+      transform: translate3d(0, -65px, 0) scale(1.03) !important;
+      border-color: rgba(56, 189, 248, 0.8) !important;
+      box-shadow: 0 25px 50px -10px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(186, 230, 253, 0.4) !important;
+      transition: transform 0.44s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.44s ease, border-color 0.44s ease !important;
+      pointer-events: none !important;
+      z-index: 40 !important;
+    }
+
+    /* Morph Specific Slide Entrance (Keynote Style) */
+    .slide-enter-morph {
+      animation: morphSlideIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    }
+    @keyframes morphSlideIn {
+      0% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+    .slide-enter-morph .anim-dock-header {
+      animation: morphDockIn 0.46s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes morphDockIn {
+      0% { opacity: 0.7; transform: translate3d(0, 32px, 0) scale(1.02); filter: blur(4px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+    .slide-enter-morph .anim-card-main {
+      animation: morphContentIn 0.52s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both !important;
+    }
+    @keyframes morphContentIn {
+      0% { opacity: 0; transform: translate3d(0, 42px, 0) scale(0.96); filter: blur(8px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+
+    .active-slide:not(.is-morphing-slide) .anim-dock-header {
+      animation: dockHeaderIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both;
+    }
+
+    @keyframes dockHeaderIn {
+      0% { opacity: 0; transform: translate3d(24px, 16px, 0) scale(0.96); filter: blur(4px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0px); }
+    }
+
+    /* Staggered Reveals only on slide entry */
+    .slide-enter-right .anim-badge, .slide-enter-left .anim-badge {
+      animation: cascadeDown 0.36s cubic-bezier(0.16, 1, 0.3, 1) 0.02s both;
+    }
+    .slide-enter-right .anim-title, .slide-enter-left .anim-title {
+      animation: cascadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+    }
+    .slide-enter-right .anim-subtext, .slide-enter-left .anim-subtext {
+      animation: cascadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+    .slide-enter-right .anim-card-1, .slide-enter-left .anim-card-1 {
+      animation: cascadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+    }
+    .slide-enter-right .anim-card-2, .slide-enter-left .anim-card-2 {
+      animation: cascadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+    }
+    .slide-enter-right .anim-card-3, .slide-enter-left .anim-card-3 {
+      animation: cascadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+    .slide-enter-right .anim-card-main, .slide-enter-left .anim-card-main {
+      animation: cascadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+    }
+    .slide-enter-right .anim-buttons, .slide-enter-left .anim-buttons {
+      animation: cascadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    /* All elements are 100% visible by default in active slide */
+    .anim-badge, .anim-title, .anim-subtext, .anim-card-1, .anim-card-2, .anim-card-3, .anim-card-main, .anim-buttons, .anim-dock-header {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    @keyframes cascadeDown {
+      0% { opacity: 0; transform: translateY(-16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cascadeUp {
+      0% { opacity: 0; transform: translateY(22px); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    }
+
+    /* Top Shimmer Beam */
+    .top-progress-beam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, #D96B43, #BA4A1B, #C07A28, transparent);
+      transform: translateX(-100%);
+      pointer-events: none;
+      z-index: 60;
+    }
+    .beam-sweep {
+      animation: beamSweepAnim 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes beamSweepAnim {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Monolith Pillar Hover Expansion */
+    .monolith-col {
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (min-width: 768px) {
+      .monolith-group:hover .monolith-col {
+        opacity: 0.65;
+        transform: scale(0.98);
+      }
+      .monolith-group:hover .monolith-col:hover {
+        opacity: 1;
+        transform: scale(1.025);
+        border-color: rgba(212, 175, 55, 0.5);
+        box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.2);
+        z-index: 20;
+      }
+    }
+  </style>
+</head>
+<body class="obsidian-grain min-h-screen relative antialiased selection:bg-electricCyan-500/20 selection:text-electricCyan-300">
+  <div class="nebula-orb-cyan"></div>
+  <div class="nebula-orb-indigo"></div>
+
+  <!-- FIXED TOP HEADER -->
+  <header class="sticky top-0 z-50 border-b border-[#E8DFD5] bg-[#FAF6F0]/90 backdrop-blur-xl relative">
+    <div id="topProgressBeam" class="top-progress-beam"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      <!-- Logo & System Tag -->
+      <div class="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer min-w-0" onclick="goToSlide(0)">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#BA4A1B] via-[#D96B43] to-[#E59866] flex-shrink-0 flex items-center justify-center text-white font-black text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25">
+          AST
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center space-x-1.5 sm:space-x-2">
+            <span class="font-extrabold text-sm sm:text-base md:text-lg tracking-tight text-[#231C18] truncate font-display">AI-Smart-Trade</span>
+            <span class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] font-bold flex-shrink-0">INSTITUTIONAL QUANT</span>
+          </div>
+          <div id="storyChapterBreadcrumb" class="text-[10px] sm:text-[11px] text-[#BA4A1B] font-semibold tracking-wide truncate max-w-[140px] sm:max-w-[240px] md:max-w-md font-mono">
+            Chương 1: Khát Vọng Đích Thực
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide Indicator Nav (Visible on lg screens) -->
+      <div id="slideCounterNav" class="hidden lg:flex items-center space-x-3 text-xs font-mono flex-shrink-0">
+        <span class="text-[#7D6E65]">Tiến trình:</span>
+        <div class="flex items-center space-x-1" id="slideDotsContainer"></div>
+        <span id="slideNumberDisplay" class="font-bold text-[#231C18] ml-1">1 / 16</span>
+      </div>
+
+      <!-- Controls: Canva Transition Selector & Theme Switch -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0 relative">
+        <div class="relative" id="canvaTransitionDropdown">
+          <button id="transitionBtn" onclick="toggleTransitionMenu(event)" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-[#E8DFD5] bg-white text-[11px] font-bold text-[#52453E] hover:border-[#BA4A1B] hover:text-[#BA4A1B] transition-all shadow-xs">
+            <span class="text-xs" id="transitionIcon">🌊</span>
+            <span id="transitionLabel">Canva Flow</span>
+            <span class="text-[9px] text-[#7D6E65]">▼</span>
+          </button>
+
+          <!-- Dropdown Menu of Canva Transitions -->
+          <div id="transitionMenu" class="hidden absolute right-0 mt-2 w-64 rounded-2xl bg-white border border-[#E8DFD5] shadow-xl p-2 z-50 backdrop-blur-xl space-y-1">
+            <div class="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#7D6E65] border-b border-[#E8DFD5] pb-1.5 mb-1 flex items-center justify-between">
+              <span>Hiệu Ứng Chuyển Trang Canva</span>
+              <span class="text-[9px] px-1 rounded bg-[#FDF3EE] text-[#BA4A1B] font-bold">Pro Motion</span>
+            </div>
+            
+            <button onclick="setTransitionMode(0)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">🌊 Canva Flow</div>
+                <div class="text-[10px] text-[#7D6E65]">Dòng chảy mượt mà & Motion blur</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold" id="check-0">✓</span>
+            </button>
+
+            <button onclick="setTransitionMode(1)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">🚀 Canva Rise</div>
+                <div class="text-[10px] text-[#7D6E65]">Dâng lên tinh tế & Spring đàn hồi</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold hidden" id="check-1">✓</span>
+            </button>
+
+            <button onclick="setTransitionMode(2)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">🗂️ Canva Stack</div>
+                <div class="text-[10px] text-[#7D6E65]">Chồng thẻ 3D bóng đổ chiều sâu</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold hidden" id="check-2">✓</span>
+            </button>
+
+            <button onclick="setTransitionMode(3)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">🎬 Canva Wipe</div>
+                <div class="text-[10px] text-[#7D6E65]">Quét rèm điện ảnh sắc sảo</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold hidden" id="check-3">✓</span>
+            </button>
+
+            <button onclick="setTransitionMode(4)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">🌫️ Canva Dissolve</div>
+                <div class="text-[10px] text-[#7D6E65]">Hòa tan quang học mờ ảo</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold hidden" id="check-4">✓</span>
+            </button>
+
+            <button onclick="setTransitionMode(5)" class="w-full text-left px-2.5 py-2 rounded-xl hover:bg-[#FDF3EE] transition-colors flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-[#231C18] group-hover:text-[#BA4A1B]">💫 Canva Pop</div>
+                <div class="text-[10px] text-[#7D6E65]">Bung nở nảy lò xo sinh động</div>
+              </div>
+              <span class="check-icon text-xs text-[#BA4A1B] font-bold hidden" id="check-5">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <button onclick="toggleTheme()" class="p-1.5 sm:p-2 rounded-xl border border-[#E8DFD5] bg-white text-[#52453E] hover:border-[#BA4A1B] hover:text-[#BA4A1B] transition-all flex items-center justify-center shadow-xs" title="Đổi giao diện Sáng / Tối">
+          <span id="themeIcon" class="text-xs sm:text-sm">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN STORY CONTAINER -->
+  <main id="mainContainer" class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+
+    <!-- =======================================================
+         CHƯƠNG 1: KHÁT VỌNG ĐÍCH THỰC (THE DESIRE)
+         ======================================================= -->
+
+    <!-- SLIDE 1.0 (HERO TRIPTYCH MONOLITHS): KHỞI NGUỒN TÂM LÝ -->
+    <section id="slide-0" class="slide-section active-slide trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5 text-center">
+        
+        <!-- Chapter Category Kicker -->
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#BA4A1B] animate-ping"></span>
+          <span>CHƯƠNG 01 • KHỞI NGUỒN TÂM LÝ ĐẦU TƯ</span>
+        </div>
+
+        <!-- Master Typographic Headline -->
+        <h1 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-[#231C18] font-display">
+          Bạn Đầu Tư Tài Chính <br>
+          <span class="text-gradient-cyan">Thực Sự Vì Điều Gì?</span>
+        </h1>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] max-w-2xl mx-auto font-normal leading-relaxed">
+          Không ai bước chân vào thị trường Vàng thế giới để đổi lấy những đêm mất ngủ, áp lực stress tột độ hay làm nô lệ dán mắt 14 tiếng vào từng cây nến giật.
+        </p>
+
+        <!-- 3 LUXURY MONOLITH PILLARS (INTERACTIVE TRIPTYCH) -->
+        <div class="monolith-group grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2 text-left">
+          
+          <!-- Pillar I: Tự Do -->
+          <div onclick="morphToSlide(0, 1, 0)" class="monolith-col anim-card-1 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#D96B43]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B] group-hover:scale-110 group-hover:bg-[#FBE8DE] transition-all shadow-xs">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" stroke-dasharray="3 3"/>
+                  <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.3"/>
+                  <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#FDF3EE] text-[#BA4A1B] border border-[#F3D2C4] font-bold">24/5 CLOUD</span>
+            </div>
+
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#BA4A1B] uppercase">Trụ Cột 01</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#BA4A1B] transition-colors font-display mt-0.5">
+                Tự Do Thời Gian & Tâm Trí
+              </h3>
+            </div>
+            
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Giải phóng 100% thời gian cho gia đình và sự nghiệp. Cỗ máy tự động quét và thực thi 24/5 không cần con người canh máy.
+            </p>
+
+            <!-- Mini Graphic Preview -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono">
+              <span class="text-[#7D6E65]">Thời gian dán mắt:</span>
+              <span class="text-[#BA4A1B] font-bold">0 Giờ / ngày</span>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#BA4A1B] font-bold group-hover:translate-x-1 transition-transform">
+              <span>Khám phá chiều sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <!-- Pillar II: Bảo Toàn Vốn -->
+          <div onclick="morphToSlide(0, 2, 1)" class="monolith-col anim-card-2 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#C07A28]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#FBF5EC] border border-[#EDDBC4] flex items-center justify-center text-[#C07A28] group-hover:scale-110 group-hover:bg-[#F6ECDC] transition-all shadow-xs">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L4 6V12C4 17.5 7.5 22 12 23C16.5 22 20 17.5 20 12V6L12 2Z" />
+                  <path d="M12 8V16M8 12H16" stroke-width="1.5" stroke-dasharray="2 2" />
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#FBF5EC] text-[#C07A28] border border-[#EDDBC4] font-bold">RỦI RO 1.0%</span>
+            </div>
+
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#C07A28] uppercase">Trụ Cột 02</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#C07A28] transition-colors font-display mt-0.5">
+                Bảo Toàn Vốn Tuyệt Đối
+              </h3>
+            </div>
+
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Nguyên tắc số 1 của Warren Buffett: Rủi ro luôn khóa cứng ở đúng 1.0% vốn. Cầu dao tự ngắt bảo toàn tối thiểu 97% tài sản.
+            </p>
+
+            <!-- Mini Graphic Preview -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono">
+              <span class="text-[#7D6E65]">Cầu dao sụt giảm:</span>
+              <span class="text-[#C07A28] font-bold">-3.0% Auto-Cut</span>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#C07A28] font-bold group-hover:translate-x-1 transition-transform">
+              <span>Khám phá chiều sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <!-- Pillar III: Tăng Trưởng Bền Vững -->
+          <div onclick="morphToSlide(0, 3, 2)" class="monolith-col anim-card-3 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#2D6A4F]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F] group-hover:scale-110 group-hover:bg-[#E0EFE8] transition-all shadow-xs">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 19L9 13L13 17L21 7" />
+                  <path d="M16 7H21V12" />
+                  <circle cx="21" cy="7" r="2" fill="currentColor" />
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#EEF6F2] text-[#2D6A4F] border border-[#C6DFD2] font-bold">WIN 71.68%</span>
+            </div>
+
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#2D6A4F] uppercase">Trụ Cột 03</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#2D6A4F] transition-colors font-display mt-0.5">
+                Tăng Trưởng Bền Vững Đều Đặn
+              </h3>
+            </div>
+
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Lãi kép khoa học: 71.68% Win Rate trên 25,000 nến thực nghiệm, tối ưu hóa tỷ lệ Risk/Reward cho đường cong vốn đi lên vững chãi.
+            </p>
+
+            <!-- Mini Graphic Preview -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono">
+              <span class="text-[#7D6E65]">Hệ số phục hồi:</span>
+              <span class="text-[#2D6A4F] font-bold">10.51x Factor</span>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#2D6A4F] font-bold group-hover:translate-x-1 transition-transform">
+              <span>Khám phá chiều sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="anim-buttons pt-3 pb-3 flex justify-center">
+          <button onclick="morphToSlide(0, 1, 0)" class="px-8 py-3.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] active:scale-[0.99] transition-all duration-200 flex items-center space-x-2.5">
+            <span>BẮT ĐẦU HÀNH TRÌNH KHÁM PHÁ</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1.1 (CINEMATIC SPLIT SCREEN): TỰ DO THỜI GIAN & TÂM TRÍ -->
+    <section id="slide-1" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <!-- DOCKED HEADER -->
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B] shadow-sm flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" stroke-dasharray="3 3"/>
+              <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.3"/>
+              <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 01 • MỤC 01 / 03 • KHÁT VỌNG TỰ DO</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Khát Vọng 1: <span class="text-gradient-cyan">Tự Do Thời Gian & Tâm Trí</span>
+            </h2>
+          </div>
+        </div>
+
+        <!-- CINEMATIC VISUAL STORY THEATER (HAI THỰC TẠI ĐỐI LẬP) -->
+        <div class="anim-card-main boutique-card rounded-3xl p-4 sm:p-6 md:p-7 overflow-hidden relative">
+          
+          <!-- Top Narrative Quote -->
+          <div class="text-center max-w-2xl mx-auto mb-4">
+            <p class="text-xs sm:text-sm text-slate-300 italic font-medium leading-relaxed">
+              "Tiền tài sinh ra là để phục vụ tự do cuộc sống của bạn — chứ không phải để biến bạn thành nô lệ của những biểu đồ giật nến đỏ xanh 14 tiếng mỗi ngày."
+            </p>
+          </div>
+
+          <!-- Split Visual Matrix with Rich Graphic Scenes -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            
+            <!-- LEFT ILLUSTRATED SCENE: THE MANUAL TRADER NIGHTMARE -->
+            <div class="rounded-2xl p-4 sm:p-5 bg-rose-50/70 border border-rose-200 shadow-sm space-y-3.5 relative overflow-hidden group">
+              
+              <div class="flex items-center justify-between border-b border-rose-200 pb-2.5">
+                <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 border border-rose-300 text-[10px] font-mono font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-600 animate-ping"></span>
+                  <span>THỰC TẠI 1: CANH TAY THỦ CÔNG</span>
+                </span>
+                
+                <!-- Pulsing 02:30 AM Alarm Badge -->
+                <div class="px-2.5 py-0.5 rounded-lg bg-rose-100 border border-rose-300 text-rose-700 font-mono font-bold text-xs tracking-wider animate-pulse flex items-center space-x-1 shadow-sm">
+                  <span>⏱</span>
+                  <span>02:30 AM Giật Mình</span>
+                </div>
+              </div>
+
+              <!-- Visual Graphic 1: Animated ECG Heartbeat Stress Wave -->
+              <div class="p-3 rounded-xl bg-white border border-rose-200/80 shadow-sm space-y-1.5">
+                <div class="flex justify-between items-center text-[10px] font-mono">
+                  <span class="text-slate-600 flex items-center space-x-1">
+                    <span>❤️</span>
+                    <span>Nhịp tim & Căng thẳng thần kinh:</span>
+                  </span>
+                  <span class="text-rose-600 font-bold">128 BPM (Hyper-Stress)</span>
+                </div>
+                <!-- Real SVG ECG Stress Pulse -->
+                <div class="h-10 w-full overflow-hidden flex items-center">
+                  <svg class="w-full h-8 text-rose-600" viewBox="0 0 320 40" fill="none">
+                    <path d="M0 20 L60 20 L70 20 L75 8 L82 32 L90 5 L98 35 L104 15 L110 20 L180 20 L185 8 L192 32 L200 5 L208 35 L214 15 L220 20 L320 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Visual Graphic 2: Midnight Candlestick Crash Diagram -->
+              <div class="p-3 rounded-xl bg-white border border-rose-200/80 shadow-sm space-y-2">
+                <div class="flex justify-between items-center text-[10px] font-mono text-slate-600">
+                  <span>Biến động thị trường đêm:</span>
+                  <span class="text-rose-600 font-bold">35 Lần Lật Kèo / 90 Ngày</span>
+                </div>
+                
+                <!-- Mini Candlestick Crash SVG -->
+                <div class="h-14 w-full bg-rose-50/60 rounded-lg p-2 relative flex items-end justify-between border border-rose-200/60">
+                  <div class="w-3 bg-emerald-500 rounded-sm h-8 relative"><span class="absolute -top-3 left-1/2 -translate-x-1/2 text-[8px] font-mono text-emerald-600 font-bold">+15$</span></div>
+                  <div class="w-3 bg-emerald-500 rounded-sm h-11 relative"></div>
+                  <div class="w-3 bg-emerald-500 rounded-sm h-10 relative"></div>
+                  <div class="w-3 bg-rose-600 rounded-sm h-7 relative"></div>
+                  <div class="w-3 bg-rose-600 rounded-sm h-12 relative animate-pulse"><span class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[8px] font-mono text-rose-600 font-bold">SL!</span></div>
+                  <!-- Flash indicator -->
+                  <div class="absolute inset-x-2 top-2 text-[9px] font-mono text-rose-700 font-semibold flex items-center justify-between">
+                    <span>Lãi +15$ không ai dời SL</span>
+                    <span class="text-rose-600 font-bold">➔ Lỗ ròng -$2,430 USD</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reality Bullet Impact -->
+              <div class="space-y-1.5 text-xs text-slate-700 pt-0.5">
+                <div class="flex items-start space-x-2 text-[11px] leading-relaxed">
+                  <span class="text-rose-600 font-bold mt-0.5">✕</span>
+                  <span><strong>14 Tiếng/ngày</strong> làm nô lệ dán mắt vào từng cây nến M1 giật loạn.</span>
+                </div>
+                <div class="flex items-start space-x-2 text-[11px] leading-relaxed">
+                  <span class="text-rose-600 font-bold mt-0.5">✕</span>
+                  <span>Mất ngủ kinh niên, stress kéo dài, bỏ bê gia đình và ảnh hưởng nghiêm trọng sự nghiệp chính.</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RIGHT ILLUSTRATED SCENE: THE AUTONOMOUS AI SANCTUARY -->
+            <div class="rounded-2xl p-4 sm:p-5 bg-emerald-50/70 border border-emerald-200 shadow-sm space-y-3.5 relative overflow-hidden group">
+              
+              <div class="flex items-center justify-between border-b border-emerald-200 pb-2.5">
+                <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-mono font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span>THỰC TẠI 2: AI-SMART-TRADE TỰ TRỊ</span>
+                </span>
+                
+                <div class="px-2.5 py-0.5 rounded-lg bg-emerald-100 border border-emerald-300 text-emerald-800 font-mono font-bold text-xs flex items-center space-x-1 shadow-sm">
+                  <span>⚡</span>
+                  <span>0.3ms Cloud Latency</span>
+                </div>
+              </div>
+
+              <!-- Visual Graphic 1: Futuristic Holographic Gyroscope Core -->
+              <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm space-y-1.5">
+                <div class="flex justify-between items-center text-[10px] font-mono">
+                  <span class="text-slate-600 flex items-center space-x-1">
+                    <span>🧠</span>
+                    <span>Cỗ máy tự trị 24/5 (Cloud Execution):</span>
+                  </span>
+                  <span class="text-emerald-600 font-bold">100% Zero-Touch</span>
+                </div>
+                
+                <!-- Gyroscope Orbit Illustration -->
+                <div class="h-10 w-full overflow-hidden flex items-center justify-around font-mono text-[10px]">
+                  <div class="flex items-center space-x-2 text-sky-700 font-semibold">
+                    <div class="w-6 h-6 rounded-full border border-sky-500 flex items-center justify-center animate-spin">
+                      <div class="w-2 h-2 rounded-full bg-sky-500"></div>
+                    </div>
+                    <span>Quét cấu trúc M15</span>
+                  </div>
+                  <div class="text-slate-400 font-bold">➔</div>
+                  <div class="flex items-center space-x-1.5 text-emerald-600 font-bold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Tự dời BE + Chốt lời</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual Graphic 2: Automated Breakeven Laser Lock Diagram -->
+              <div class="p-3 rounded-xl bg-white border border-emerald-200/80 shadow-sm space-y-2">
+                <div class="flex justify-between items-center text-[10px] font-mono text-slate-700">
+                  <span>Cơ chế Stage 1 Breakeven Guardian:</span>
+                  <span class="text-emerald-600 font-bold">Khóa +0.5$ Bù Phí Sàn</span>
+                </div>
+
+                <!-- Laser Lock Graphic Bar -->
+                <div class="h-14 w-full bg-emerald-50/60 rounded-lg p-2 relative flex flex-col justify-center border border-emerald-200/60">
+                  <div class="flex justify-between text-[9px] font-mono mb-1 text-slate-700 font-semibold">
+                    <span>Entry: 2650.00</span>
+                    <span class="text-sky-700 font-bold">Chạm +5.0 Giá Vàng</span>
+                    <span class="text-emerald-700 font-bold">SL Snap ➔ BE + 0.5$</span>
+                  </div>
+                  <!-- Progress Bar with Laser Lock -->
+                  <div class="w-full h-3 rounded-full bg-slate-200 border border-slate-300 overflow-hidden relative">
+                    <div class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full" style="width: 100%;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center text-[8px] font-mono text-white font-black tracking-wider">
+                      100% TRIỆT TIÊU RỦI RO LẬT KÈO (ZERO RISK)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Freedom Reality Bullet Impact -->
+              <div class="space-y-1.5 text-xs text-slate-700 pt-0.5">
+                <div class="flex items-start space-x-2 text-[11px] leading-relaxed">
+                  <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                  <span><strong>0 Giờ dán mắt:</strong> Ngủ trọn vẹn 8 tiếng mỗi đêm không cần giật mình canh nến.</span>
+                </div>
+                <div class="flex items-start space-x-2 text-[11px] leading-relaxed">
+                  <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                  <span>Giải phóng 100% tâm trí: Dành trọn thời gian quý giá cho gia đình, đam mê và sự nghiệp chính.</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Visual Ribbon -->
+          <div class="mt-4 p-3 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] flex items-center justify-between text-xs font-mono shadow-xs">
+            <span class="text-[#7D6E65]">Giá trị cốt lõi:</span>
+            <span class="text-[#BA4A1B] font-bold tracking-wider">THỊNH VƯỢNG THỰC CHẤT • AN LẠC TRONG TÂM</span>
+          </div>
+
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(0)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Tổng quan
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Mục 2 • Bảo Toàn Vốn</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1.2: BẢO TOÀN VỐN TUYỆT ĐỐI -->
+    <section id="slide-2" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <!-- DOCKED HEADER -->
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FBF5EC] border border-[#EDDBC4] flex items-center justify-center text-[#C07A28] shadow-sm flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6V12C4 17.5 7.5 22 12 23C16.5 22 20 17.5 20 12V6L12 2Z" />
+              <path d="M12 8V16M8 12H16" stroke-width="1.5" stroke-dasharray="2 2" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FBF5EC] border border-[#EDDBC4] text-[#C07A28] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 01 • MỤC 02 / 03 • QUẢN TRỊ RỦI RO</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Khát Vọng 2: <span class="text-gradient-aurora">Bảo Toàn Vốn Tuyệt Đối</span>
+            </h2>
+          </div>
+        </div>
+
+        <!-- MAIN CITADEL DEFENSE THEATER -->
+        <div class="anim-card-main boutique-card rounded-3xl p-4 sm:p-6 md:p-7 overflow-hidden relative">
+          <div class="text-center max-w-2xl mx-auto mb-4">
+            <p class="text-xs sm:text-sm md:text-base font-medium text-[#52453E] italic">
+              "Quy tắc 1: Không bao giờ để mất tiền. Quy tắc 2: Không bao giờ quên quy tắc 1." — Warren Buffett
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            
+            <!-- Graphic 1: Dynamic ATR Lot Sizing Scale -->
+            <div class="rounded-2xl p-4 sm:p-5 bg-indigo-50/60 border border-indigo-200 shadow-sm space-y-3.5">
+              <div class="flex items-center justify-between border-b border-indigo-200 pb-2">
+                <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-mono font-bold border border-indigo-300 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 21l18-18M3 21V3"/></svg>
+                  <span>CÂN ĐO ĐÒN BẨY THEO ATR</span>
+                </span>
+                <span class="text-xs font-mono font-bold text-indigo-700">Rủi Ro Khóa 1.0%</span>
+              </div>
+
+              <!-- Animated Visual Comparison Bar -->
+              <div class="space-y-2.5 pt-1">
+                <div class="p-3 bg-white border border-indigo-100 rounded-xl shadow-sm">
+                  <div class="flex justify-between text-[11px] font-semibold mb-1.5">
+                    <span class="text-slate-700">Trader đánh tay bốc đồng (Nguy hiểm)</span>
+                    <span class="text-rose-600 font-mono font-bold">Rủi ro 25% - 70%</span>
+                  </div>
+                  <div class="w-full h-2.5 rounded-full bg-slate-200 border border-slate-300 overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-red-600 to-rose-500 rounded-full animate-pulse" style="width: 75%;"></div>
+                  </div>
+                  <div class="text-[10px] text-rose-600 font-mono font-semibold mt-1">⚠️ Cháy sạch sau chuỗi 3 lệnh thua liên tiếp!</div>
+                </div>
+
+                <div class="p-3 bg-white border border-indigo-100 rounded-xl shadow-sm">
+                  <div class="flex justify-between text-[11px] font-semibold mb-1.5">
+                    <span class="text-slate-800 font-bold">AI-Smart-Trade (Chuẩn Quỹ Cấp Vốn FTMO)</span>
+                    <span class="text-emerald-600 font-mono font-bold">Cố Định 1.0% / Lệnh</span>
+                  </div>
+                  <div class="w-full h-2.5 rounded-full bg-slate-200 border border-slate-300 overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full" style="width: 15%;"></div>
+                  </div>
+                  <div class="text-[10px] text-emerald-700 font-mono font-semibold mt-1">✓ Toán học chứng minh: Sống sót qua chuỗi 50 lệnh thua!</div>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-white border border-indigo-100 text-[11px] text-slate-700 font-mono shadow-sm">
+                Co giãn Lot tự động theo khoảng cách Stop Loss thực tế của cây nến M15.
+              </div>
+            </div>
+
+            <!-- Graphic 2: 3-Layer Laser Citadel Shield -->
+            <div class="rounded-2xl p-4 sm:p-5 bg-sky-50/60 border border-sky-200 shadow-sm space-y-3.5">
+              <div class="flex items-center justify-between border-b border-sky-200 pb-2">
+                <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 text-[10px] font-mono font-bold border border-sky-300 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>3 TẦNG KHIÊN BẢO VỆ LASER</span>
+                </span>
+                <span class="text-xs font-mono font-bold text-sky-800">Tối Thiểu 97% Vốn</span>
+              </div>
+
+              <!-- 3 Interactive Shield Layers -->
+              <div class="space-y-2">
+                <div class="p-2.5 rounded-xl bg-white border border-sky-100 flex items-center space-x-3 text-xs shadow-sm">
+                  <div class="w-7 h-7 rounded-lg bg-sky-100 border border-sky-300 flex items-center justify-center text-sky-700 flex-shrink-0 font-mono font-bold text-xs">1</div>
+                  <div>
+                    <div class="font-bold text-slate-800 text-[11px]">Khiên Tin Tức (News Shield)</div>
+                    <div class="text-[10px] text-slate-600">Tự động đóng băng 30m trước và sau tin bão Non-Farm / CPI / FOMC.</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-white border border-sky-100 flex items-center space-x-3 text-xs shadow-sm">
+                  <div class="w-7 h-7 rounded-lg bg-indigo-100 border border-indigo-300 flex items-center justify-center text-indigo-700 flex-shrink-0 font-mono font-bold text-xs">2</div>
+                  <div>
+                    <div class="font-bold text-slate-800 text-[11px]">Né Giãn Spread Rạng Sáng</div>
+                    <div class="text-[10px] text-slate-600">Dừng quét và hủy lệnh giờ sàn giãn spread (05:00 - 06:30 VN).</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-white border border-sky-100 flex items-center space-x-3 text-xs shadow-sm">
+                  <div class="w-7 h-7 rounded-lg bg-rose-100 border border-rose-300 flex items-center justify-center text-rose-700 flex-shrink-0 font-mono font-bold text-xs">3</div>
+                  <div>
+                    <div class="font-bold text-slate-800 text-[11px]">Cầu Dao Sụt Giảm Ngày (-3.0%)</div>
+                    <div class="text-[10px] text-slate-600">Chạm ngưỡng ngắt cầu dao ngay lập tức, triệt tiêu hoàn toàn rủi ro cháy tài khoản!</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] flex items-center justify-between text-xs font-mono shadow-xs">
+            <span class="text-[#7D6E65]">Mục tiêu tối thượng:</span>
+            <span class="text-[#C07A28] font-bold tracking-wider">SỐNG SÓT VÀ BẢO TOÀN VỐN QUA MỌI CƠN BÃO TÀI CHÍNH</span>
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(0)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Tổng quan
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Mục 3 • Tăng Trưởng Bền Vững</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1.3: TĂNG TRƯỞNG BỀN VỮNG ĐỀU ĐẶN -->
+    <section id="slide-3" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F] shadow-sm flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 19L9 13L13 17L21 7" />
+              <path d="M16 7H21V12" />
+              <circle cx="21" cy="7" r="2" fill="currentColor" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#EEF6F2] border border-[#C6DFD2] text-[#2D6A4F] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 01 • MỤC 03 / 03 • LÃI KÉP KHOA HỌC</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Khát Vọng 3: <span class="text-gradient-mint">Tăng Trưởng Bền Vững Đều Đặn</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-4 sm:p-6 md:p-7 overflow-hidden relative">
+          <div class="text-center max-w-2xl mx-auto mb-4">
+            <p class="text-xs sm:text-sm md:text-base font-medium text-[#52453E] italic">
+              "Lãi kép là kỳ quan thứ 8 của thế giới. Tăng trưởng thực chất đến từ kỷ luật tích lũy nhất quán, nói KHÔNG với cờ bạc may rủi."
+            </p>
+          </div>
+
+          <!-- Dual-Curve SVG Capital Growth Chart & Telemetry Matrix -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+            
+            <!-- Graphic Chart Visual (7 Cols) -->
+            <div class="md:col-span-7 p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 shadow-sm space-y-2">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <span class="text-slate-800 font-bold flex items-center space-x-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>ĐƯỜNG CONG TĂNG TRƯỞNG THỰC NGHIỆM</span>
+                </span>
+                <span class="text-emerald-700 font-bold">25,000 Nến M15</span>
+              </div>
+
+              <!-- Real SVG Growth Curve Comparison -->
+              <div class="h-32 w-full bg-white rounded-xl p-2 relative overflow-hidden flex items-end border border-emerald-200/80 shadow-sm">
+                <svg class="w-full h-full" viewBox="0 0 350 100" fill="none">
+                  <!-- Grid horizontal lines -->
+                  <line x1="0" y1="25" x2="350" y2="25" stroke="rgba(15,23,42,0.06)" stroke-dasharray="2 2"/>
+                  <line x1="0" y1="50" x2="350" y2="50" stroke="rgba(15,23,42,0.06)" stroke-dasharray="2 2"/>
+                  <line x1="0" y1="75" x2="350" y2="75" stroke="rgba(15,23,42,0.06)" stroke-dasharray="2 2"/>
+
+                  <!-- Curve A: Reckless Gambler (Crash to zero) -->
+                  <path d="M0 80 Q50 20 90 10 L130 95 L200 95 L350 95" stroke="#e11d48" stroke-width="2" stroke-dasharray="3 3"/>
+                  
+                  <!-- Curve B: AI-Smart-Trade Institutional Compounding (Smooth S-curve) -->
+                  <path d="M0 85 C60 80, 100 68, 160 50 C220 32, 280 20, 350 8" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+                  
+                  <!-- Live Node Pulsing at End -->
+                  <circle cx="348" cy="8" r="4" fill="#059669" class="animate-ping"/>
+                  <circle cx="348" cy="8" r="3" fill="#059669"/>
+                </svg>
+
+                <div class="absolute bottom-2 left-3 text-[9px] font-mono text-rose-700 font-semibold flex items-center space-x-1 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200 shadow-xs">
+                  <span>- - -</span>
+                  <span>Trader cờ bạc (Cháy về 0)</span>
+                </div>
+                <div class="absolute top-2 right-3 text-[9px] font-mono text-emerald-800 font-bold flex items-center space-x-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 shadow-xs">
+                  <span>──</span>
+                  <span>AI-Smart-Trade (Lãi Kép Ổn Định)</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between text-[10px] font-mono text-slate-600 pt-1">
+                <span>Kiểm định Walk-Forward 90 ngày</span>
+                <span class="text-slate-800 font-bold">ECN Zero-Spread Slippage Tested</span>
+              </div>
+            </div>
+
+            <!-- 3 Holographic Telemetry Meters (5 Cols) -->
+            <div class="md:col-span-5 flex flex-col justify-between space-y-2.5">
+              <div class="p-3 rounded-2xl bg-white border border-emerald-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                  <div class="text-[9px] font-mono font-bold text-slate-600 uppercase tracking-wider">Tỷ Lệ Thắng Thực Tế</div>
+                  <div class="text-2xl font-extrabold text-emerald-600 font-mono mt-0.5">71.68%</div>
+                </div>
+                <div class="text-right text-[10px] font-mono text-slate-500">939 lệnh kiểm định</div>
+              </div>
+
+              <div class="p-3 rounded-2xl bg-white border border-sky-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                  <div class="text-[9px] font-mono font-bold text-slate-600 uppercase tracking-wider">Max Drawdown Khóa Cứng</div>
+                  <div class="text-2xl font-extrabold text-sky-600 font-mono mt-0.5">6.64%</div>
+                </div>
+                <div class="text-right text-[10px] font-mono text-slate-500">Chuẩn quỹ FTMO &lt;10%</div>
+              </div>
+
+              <div class="p-3 rounded-2xl bg-white border border-indigo-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                  <div class="text-[9px] font-mono font-bold text-slate-600 uppercase tracking-wider">Hệ Số Phục Hồi Vốn</div>
+                  <div class="text-2xl font-extrabold text-indigo-600 font-mono mt-0.5">10.51x</div>
+                </div>
+                <div class="text-right text-[10px] font-mono text-slate-500">Recovery Factor</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs font-mono shadow-xs">
+            <span class="text-slate-600">Triết lý tăng trưởng:</span>
+            <span class="text-emerald-700 font-bold tracking-wider">KỶ LUẬT TOÁN HỌC &gt; MAY RỦI NHẤT THỜI</span>
+          </div>
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(0)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Tổng quan
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 2: Cạm Bẫy Thực Tế</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 2: NỖI ĐAU THỰC TẾ & BẪY CẢM XÚC (THE PAIN)
+         ======================================================= -->
+
+    <!-- SLIDE 2.0: 3 CÁI BẪY TÂM LÝ -->
+    <section id="slide-4" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3F0] border border-[#F4D3CE] text-[#B94435] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B94435] animate-ping"></span>
+          <span>CHƯƠNG 02 • HIỆN THỰC KHẮC NGHIỆT</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] leading-tight font-display">
+          Nhưng Tại Sao 95% Nhà Đầu Tư Lại <br>
+          <span class="text-gradient-coral">Thất Bại Nặng Nề Trên Thị Trường Vàng?</span>
+        </h2>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] max-w-2xl mx-auto font-normal leading-relaxed">
+          Thị trường Vàng (XAU/USD) là chiến trường khắc nghiệt nhất thế giới. 3 cái bẫy cảm xúc sau đây đang âm thầm hủy diệt tài khoản trader mỗi ngày:
+        </p>
+
+        <!-- 3 Rich Illustrated Trap Cards -->
+        <div class="monolith-group grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2 text-left">
+          
+          <!-- Trap 1 -->
+          <div onclick="morphToSlide(4, 5, 0)" class="monolith-col anim-card-1 boutique-card rounded-3xl p-5 sm:p-6 space-y-3 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#B94435]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] group-hover:scale-110 transition-transform shadow-xs">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#FDF3F0] text-[#B94435] border border-[#F4D3CE] font-bold">BẪY SỐ 01</span>
+            </div>
+
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#B94435] transition-colors font-display">
+                Lật Kèo Cay Đắng
+              </h3>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed mt-1">
+                Lệnh đang lãi +10 đến +15 giá vàng nhưng tiếc không dời hòa vốn &rarr; Giá quay đầu cắn sạch Stop Loss.
+              </p>
+            </div>
+
+            <!-- Mini Graphic: Reversal Flash -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-1">
+              <div class="flex justify-between text-[10px] font-mono text-[#7D6E65]">
+                <span>Diễn biến:</span>
+                <span class="text-[#B94435] font-bold">+15$ ➔ Sập Cắn SL</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E8DFD5] overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#2D6A4F] to-[#B94435] rounded-full" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#B94435] font-semibold group-hover:translate-x-1 transition-transform">
+              <span>Bóc trần cạm bẫy</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <!-- Trap 2 -->
+          <div onclick="morphToSlide(4, 6, 1)" class="monolith-col anim-card-2 boutique-card rounded-3xl p-5 sm:p-6 space-y-3 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#B94435]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] group-hover:scale-110 transition-transform shadow-xs">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L15 9L12 18L9 9L12 2Z" fill="currentColor" fill-opacity="0.25" />
+                  <path d="M7 9H17" stroke-width="2.5" />
+                  <path d="M12 18V22" stroke-width="2" stroke-dasharray="2 2" />
+                  <circle cx="12" cy="22" r="1.5" fill="currentColor" />
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#FDF3F0] text-[#B94435] border border-[#F4D3CE] font-bold">BẪY SỐ 02</span>
+            </div>
+
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#B94435] transition-colors font-display">
+                Bắt Dao Rơi & FOMO
+              </h3>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed mt-1">
+                Thấy giá dựng đứng liền chặn bán đỉnh hoặc lao vào bắt đáy ngược xu hướng H1, làm mồi cho cá mập.
+              </p>
+            </div>
+
+            <!-- Mini Graphic: Plunging Dagger -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-1">
+              <div class="flex justify-between text-[10px] font-mono text-[#7D6E65]">
+                <span>Rủi ro:</span>
+                <span class="text-[#B94435] font-bold">Quét Sạch Thanh Khoản</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E8DFD5] overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#D96B43] to-[#B94435] rounded-full" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#B94435] font-semibold group-hover:translate-x-1 transition-transform">
+              <span>Bóc trần cạm bẫy</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <!-- Trap 3 -->
+          <div onclick="morphToSlide(4, 7, 2)" class="monolith-col anim-card-3 boutique-card rounded-3xl p-5 sm:p-6 space-y-3 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#B94435]">
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] group-hover:scale-110 transition-transform shadow-xs">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12A9 9 0 1 1 12 3C15 3 17.5 4.5 19 7L21 12Z" stroke-dasharray="3 3" />
+                  <path d="M12 8V12L15 15" stroke-width="2" />
+                </svg>
+              </div>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#FDF3F0] text-[#B94435] border border-[#F4D3CE] font-bold">BẪY SỐ 03</span>
+            </div>
+
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#B94435] transition-colors font-display">
+                Trả Thù Thị Trường
+              </h3>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed mt-1">
+                Dính 1 lệnh thua &rarr; Cay cú nhồi x2, x3 số Lot gỡ gạc. 90% cháy tài khoản xảy ra trong 2 giờ sau thua!
+              </p>
+            </div>
+
+            <!-- Mini Graphic: Anger Multiplier -->
+            <div class="p-2.5 rounded-xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-1">
+              <div class="flex justify-between text-[10px] font-mono text-[#7D6E65]">
+                <span>Vòng xoáy:</span>
+                <span class="text-[#B94435] font-bold">0.1 ➔ 0.5 ➔ 2.0 Lot</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E8DFD5] overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#D99B52] to-[#B94435] rounded-full animate-pulse" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#B94435] font-semibold group-hover:translate-x-1 transition-transform">
+              <span>Bóc trần cạm bẫy</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="anim-buttons pt-3 pb-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(0)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Chương 1
+          </button>
+          <button onclick="morphToSlide(4, 5, 0)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-bold text-sm shadow-lg shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>BÓC TRẦN TỪNG BẪY TÂM LÝ</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2.1: BẪY LẬT KÈO -->
+    <section id="slide-5" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FDF3F0] border border-[#F4D3CE] text-[#B94435] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 02 • BẪY CẢM XÚC 01 / 03</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Bẫy 1: <span class="text-[#B94435]">Lật Kèo Cay Đắng (Lãi Hóa Lỗ)</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <div class="p-5 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#B94435] text-[10px] font-mono font-bold border border-[#F4D3CE]">
+                KỊCH BẢN THỰC TẾ TRADER TAY
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Lệnh đang xanh mướt +10 đến +15 giá vàng, tài khoản tăng cả nghìn đô nhưng vì không ai canh máy dời hòa vốn &rarr; Giá giật ngược cắn sạch SL.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-[#F4D3CE] text-xs text-[#B94435] leading-relaxed font-mono">
+                <strong>Bằng chứng thực nghiệm:</strong> Trong 90 ngày copy tay, trader dính đúng <strong>35 lần lật kèo</strong>, biến lãi thành khoản lỗ ròng <strong>-$2,430 USD</strong>!
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#2D6A4F] text-[10px] font-mono font-bold border border-[#C6DFD2]">
+                ⚡ GIẢI PHÁP TỰ TRỊ AI-SMART-TRADE
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Cơ chế <strong>Stage 1 Breakeven Guardian</strong>: Giá vừa chạm đúng +5.0 giá vàng &rarr; Tự động snap SL về BE + 0.5$ trong 0.3ms.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-[#C6DFD2] text-xs text-[#2D6A4F] leading-relaxed font-mono">
+                ✓ 100% Triệt tiêu rủi ro lật kèo<br>
+                ✓ Bỏ túi +0.5$ bù phí sàn & swap<br>
+                ✓ An tâm tuyệt đối gồng tiếp TP1
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(4)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Tổng quan bẫy
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Bẫy 2 • Bắt Dao Rơi</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2.2: BẪY BẮT DAO RƠI & FOMO -->
+    <section id="slide-6" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2V18M12 18L7 13M12 18L17 13" />
+              <path d="M5 22H19" stroke-width="2" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FDF3F0] border border-[#F4D3CE] text-[#B94435] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 02 • BẪY CẢM XÚC 02 / 03</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Bẫy 2: <span class="text-[#B94435]">Bắt Dao Rơi & Chặn Đầu Xe Lửa</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <div class="p-5 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#B94435] text-[10px] font-mono font-bold border border-[#F4D3CE]">
+                TÂM LÝ BẮT ĐỈNH ĐÁY
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Thấy giá vàng dựng đứng liền sinh tâm lý <em>"cao quá rồi, vào chặn bán Sell Limit bắt đỉnh"</em> hoặc thấy giá rơi tự do thì nhảy vào bắt đáy.
+              </p>
+              <div class="space-y-1.5 text-xs text-[#7D6E65]">
+                <div class="flex items-start space-x-2">
+                  <span class="text-[#B94435] font-bold">✕</span>
+                  <span>Cá mập tài chính cố tình đẩy nến xung lực mạnh để quét thanh khoản của người chặn đầu xe lửa.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#2D6A4F] text-[10px] font-mono font-bold border border-[#C6DFD2]">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6v6c0 5.5 3.5 10 8 11 4.5-1 8-5.5 8-11V6l-8-4z"/></svg>
+                <span>BỘ LỌC CẦU DAO JEV VETO</span>
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Cấm tuyệt đối bắt đỉnh đáy ngược xu hướng H1. Cỗ máy chỉ giải ngân khi đủ 2 điều kiện:
+              </p>
+              <div class="space-y-1.5 text-xs text-[#2D6A4F] font-mono">
+                <div class="flex items-start space-x-2">
+                  <span class="font-bold">✓</span>
+                  <span>1. Cá mập đã quét sạch thanh khoản (Liquidity Sweep).</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="font-bold">✓</span>
+                  <span>2. Xuất hiện nến xác nhận đảo chiều cấu trúc (CHoCH).</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(4)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Bẫy trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Bẫy 3 • Trả Thù Thị Trường</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2.3: BẪY TRẢ THÙ THỊ TRƯỜNG -->
+    <section id="slide-7" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12A9 9 0 1 1 12 3C15 3 17.5 4.5 19 7L21 12Z" stroke-dasharray="3 3" />
+              <path d="M12 8V12L15 15" stroke-width="2" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FDF3F0] border border-[#F4D3CE] text-[#B94435] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 02 • BẪY CẢM XÚC 03 / 03 • HOÀN TẤT CHỦ ĐỀ</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Bẫy 3: <span class="text-[#B94435]">Trả Thù Thị Trường (Revenge Trading)</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <div class="p-5 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#B94435] text-[10px] font-mono font-bold border border-[#F4D3CE]">
+                VÒNG XOÁY CẢM XÚC CAY CÚ
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Dính 1 lệnh thua &rarr; Cay cú dâng trào &rarr; Nhồi gấp 2, gấp 3 số Lot để gỡ lại ngay lập tức.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-[#F4D3CE] text-xs text-[#B94435] font-mono font-semibold">
+                ⚠️ 90% các vụ cháy tài khoản nghiêm trọng nhất đều xảy ra chỉ trong vòng 2 giờ sau một lệnh thua cay đắng!
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] space-y-3">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white text-[#2D6A4F] text-[10px] font-mono font-bold border border-[#C6DFD2]">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>KHÓA COOLDOWN KỶ LUẬT THÉP</span>
+              </span>
+              <p class="text-xs sm:text-sm text-[#4F433C] font-medium leading-relaxed">
+                Hệ thống áp đặt kỷ luật bằng dòng code bất biến:
+              </p>
+              <div class="space-y-1.5 text-xs text-[#2D6A4F] font-mono">
+                <div class="flex items-start space-x-2">
+                  <span class="font-bold">✓</span>
+                  <span>Dính 1 SL &rarr; Tự động khóa giao dịch 30 phút (1800s).</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="font-bold">✓</span>
+                  <span>Dính 2 SL liên tiếp &rarr; Đóng băng hệ thống 4 tiếng.</span>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="font-bold">✓</span>
+                  <span>Triệt tiêu 100% khả năng vào lệnh trả thù bốc đồng.</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(4)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Bẫy trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 3: Bước Ngoặt Tư Duy</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 3: BƯỚC NGOẶT TƯ DUY (THE PARADIGM SHIFT)
+         ======================================================= -->
+
+    <section id="slide-8" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-4xl mx-auto space-y-4 sm:space-y-6 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span>CHƯƠNG 03 • BƯỚC NGOẶT TƯ DUY WALL STREET</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] leading-tight font-display">
+          "Chiến Thắng Bắt Đầu Từ <br>
+          <span class="text-gradient-cyan">Kỷ Luật Phòng Thủ Tuyệt Đối"</span>
+        </h2>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-6 sm:p-9 max-w-3xl mx-auto text-left relative overflow-hidden">
+          <p class="text-xs sm:text-base md:text-lg text-[#52453E] font-normal leading-relaxed italic">
+            Các quỹ đầu tư định lượng hàng đầu thế giới không tìm kiếm chén thánh đoán trước tương lai. Họ chiến thắng bằng <strong>xác suất thống kê vượt trội</strong> kết hợp với <strong>phản xạ bảo vệ vốn tự động không cảm xúc</strong> tính bằng mili-giây.
+          </p>
+          <div class="mt-6 pt-4 border-t border-[#E8DFD5] flex items-center justify-between text-xs font-mono">
+            <span class="text-[#7D6E65]">Công thức định lượng:</span>
+            <span class="text-[#BA4A1B] font-bold">100% Machine Discipline • Zero Emotion</span>
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="prevSlide()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Chương trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 4: Khám Phá Cỗ Máy Giải Pháp</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 4: GIẢI PHÁP AI-SMART-TRADE (THE SOLUTION)
+         ======================================================= -->
+
+    <section id="slide-9" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-6 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span>CHƯƠNG 04 • CỖ MÁY ĐỘT PHÁ</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] font-display">
+          Giải Pháp: <span class="text-gradient-cyan">AI-Smart-Trade Engine</span>
+        </h2>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] max-w-2xl mx-auto font-normal leading-relaxed">
+          Hệ thống lượng hóa tự trị tích hợp 3 trụ cột sức mạnh công nghệ thế hệ mới:
+        </p>
+
+        <div class="monolith-group grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2 text-left">
+          
+          <div class="monolith-col anim-card-1 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 border-[#E8DFD5] hover:border-[#D96B43]">
+            <div class="w-11 h-11 rounded-2xl bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B] shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.2" />
+                <path d="M12 3V7M12 17V21M3 12H7M17 12H21" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold text-[#BA4A1B] uppercase">Trụ Cột 01</span>
+              <h3 class="text-base font-bold text-[#231C18] font-display mt-0.5">Smart Money Concepts</h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Tự động phát hiện bẫy quét thanh khoản và vùng mất cân bằng cung cầu M15 thuận chiều dòng tiền tổ chức.
+            </p>
+          </div>
+
+          <div class="monolith-col anim-card-2 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 border-[#E8DFD5] hover:border-[#B94435]">
+            <div class="w-11 h-11 rounded-2xl bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435] shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold text-[#B94435] uppercase">Trụ Cột 02</span>
+              <h3 class="text-base font-bold text-[#231C18] font-display mt-0.5">Cầu Dao JEV VETO</h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              3 tầng phán quyết độc lập: RAM Ledger Gate, Hợp lưu kỹ thuật S4 và LLM Decision Agent.
+            </p>
+          </div>
+
+          <div class="monolith-col anim-card-3 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 border-[#E8DFD5] hover:border-[#2D6A4F]">
+            <div class="w-11 h-11 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F] shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4H20V20H4V4Z" stroke-opacity="0.3" />
+                <path d="M4 14H14V20" stroke-opacity="0.5" />
+                <path d="M4 20C4 11.1634 11.1634 4 20 4" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold text-[#2D6A4F] uppercase">Trụ Cột 03</span>
+              <h3 class="text-base font-bold text-[#231C18] font-display mt-0.5">Bảo Vệ 3 Tầng Fibo</h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Khóa hòa vốn BE + 0.5 ở +5 giá; chốt 50% ở TP1; neo cứng SL runner để gồng trôi về TP2.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="anim-buttons pt-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="prevSlide()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Chương trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 5: Bằng Chứng Thực Nghiệm</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 5: CHỨNG THỰC THỰC NGHIỆM (THE PROOF)
+         ======================================================= -->
+
+    <section id="slide-10" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-6 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span>CHƯƠNG 05 • SỐ LIỆU GROUND TRUTH</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] font-display">
+          Chứng Thực Trên <span class="text-gradient-cyan">25,000 Nến M15 Vàng Thật</span>
+        </h2>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] max-w-2xl mx-auto font-normal leading-relaxed">
+          Dữ liệu kiểm tra nhân quả khách quan trên sàn ECN, đã khấu trừ trực tiếp -4.0 pips phí sàn & trượt giá.
+        </p>
+
+        <!-- 3 CORE INSTITUTIONAL METRICS CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-center">
+          <div class="anim-card-1 boutique-card rounded-2xl p-5 border-[#C6DFD2]">
+            <div class="text-[10px] uppercase font-mono tracking-widest text-[#7D6E65] font-bold mb-1">Tỷ Lệ Thắng (Win Rate)</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#2D6A4F] font-mono">71.68%</div>
+            <div class="text-[11px] text-[#7D6E65] mt-1 font-mono">939 lệnh kiểm định thực tế</div>
+          </div>
+
+          <div class="anim-card-2 boutique-card rounded-2xl p-5 border-[#F3D2C4]">
+            <div class="text-[10px] uppercase font-mono tracking-widest text-[#7D6E65] font-bold mb-1">Max Drawdown (Khóa Cứng)</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#BA4A1B] font-mono">6.64%</div>
+            <div class="text-[11px] text-[#BA4A1B] mt-1 font-semibold font-mono">Chuẩn quỹ FTMO &lt;10%</div>
+          </div>
+
+          <div class="anim-card-3 boutique-card rounded-2xl p-5 border-[#EDDBC4]">
+            <div class="text-[10px] uppercase font-mono tracking-widest text-[#7D6E65] font-bold mb-1">Hệ Số Lợi Nhuận (PF)</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#C07A28] font-mono">1.59</div>
+            <div class="text-[11px] text-[#7D6E65] mt-1 font-mono">Recovery Factor: <strong>10.51</strong></div>
+          </div>
+        </div>
+
+        <!-- Mini Equity Curve -->
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-6 max-w-4xl mx-auto">
+          <div class="flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-[#7D6E65] pb-3 border-b border-[#E8DFD5] gap-1">
+            <span class="font-bold text-[#231C18]">Đường Cong Vốn Ổn Định (939 Lệnh Thực Tế)</span>
+            <span class="text-[#2D6A4F] font-bold">Max Chuỗi SL: 4 Lệnh (Đã trừ phí sàn)</span>
+          </div>
+          <div class="h-28 sm:h-36 w-full pt-3">
+            <svg class="w-full h-full" viewBox="0 0 800 180" fill="none">
+              <defs>
+                <linearGradient id="curveGradProof" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2D6A4F" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#2D6A4F" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 20 160 C 120 145, 200 130, 280 110 C 360 95, 440 75, 520 55 C 600 45, 700 25, 780 15 L 780 170 L 20 170 Z" fill="url(#curveGradProof)" />
+              <path class="chart-path" d="M 20 160 C 120 145, 200 130, 280 110 C 360 95, 440 75, 520 55 C 600 45, 700 25, 780 15" stroke="#2D6A4F" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="prevSlide()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Chương trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 6: Quản Trị Chuyên Nghiệp</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 6: QUẢN TRỊ VỊ THẾ NHƯ MỘT TRADER CHUYÊN NGHIỆP
+         ======================================================= -->
+
+    <section id="slide-11" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-6 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span>CHƯƠNG 06 • QUY CHUẨN QUẢN TRỊ QUỸ ĐỊNH LƯỢNG</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] leading-tight font-display">
+          Hệ Thống Vận Hành & Quản Trị Vị Thế <br>
+          <span class="text-gradient-cyan">Như Một Trader Chuyên Nghiệp Tổ Chức</span>
+        </h2>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] max-w-2xl mx-auto font-normal leading-relaxed">
+          Vào lệnh chỉ chiếm 20% thành công. 80% lợi nhuận và sự an toàn của quỹ nằm ở quy trình quản trị vị thế nghiêm ngặt qua 3 giai đoạn:
+        </p>
+
+        <div class="monolith-group grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2 text-left">
+          
+          <div onclick="morphToSlide(11, 12, 0)" class="monolith-col anim-card-1 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#C07A28]">
+            <div class="w-11 h-11 rounded-2xl bg-[#FBF5EC] border border-[#EDDBC4] flex items-center justify-center text-[#C07A28] group-hover:scale-110 transition-transform shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6V12L16 14" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#C07A28] uppercase">Giai Đoạn 01</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#C07A28] transition-colors font-display">
+                Trước Khi Khớp Lệnh
+              </h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Định cỡ Lot động ATR, Tấm khiên tin tức vĩ mô 30 phút và Né giãn spread rạng sáng.
+            </p>
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#C07A28] font-semibold">
+              <span>Tìm hiểu sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <div onclick="morphToSlide(11, 13, 1)" class="monolith-col anim-card-2 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#2D6A4F]">
+            <div class="w-11 h-11 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F] group-hover:scale-110 transition-transform shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L4 6V12C4 17.5 7.5 22 12 23C16.5 22 20 17.5 20 12V6L12 2Z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#2D6A4F] uppercase">Giai Đoạn 02</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#2D6A4F] transition-colors font-display">
+                Lệnh Đang Chạy
+              </h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Khóa hòa vốn BE+0.5 ở +5 giá, chốt 50% tiền mặt ở TP1 và neo cứng SL runner về TP2.
+            </p>
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#2D6A4F] font-semibold">
+              <span>Tìm hiểu sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <div onclick="morphToSlide(11, 14, 2)" class="monolith-col anim-card-3 boutique-card rounded-3xl p-5 sm:p-6 space-y-3.5 cursor-pointer relative overflow-hidden group border-[#E8DFD5] hover:border-[#BA4A1B]">
+            <div class="w-11 h-11 rounded-2xl bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B] group-hover:scale-110 transition-transform shadow-xs">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold tracking-wider text-[#BA4A1B] uppercase">Giai Đoạn 03</span>
+              <h3 class="text-base sm:text-lg font-bold text-[#231C18] group-hover:text-[#BA4A1B] transition-colors font-display">
+                Sau Khi Đóng Lệnh
+              </h3>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Khóa Cooldown 30 phút cưỡng chế, Cầu dao ngắt lỗ ngày 3.0% và Điều khiển 2 chiều Telegram.
+            </p>
+            <div class="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] font-mono text-[#BA4A1B] font-semibold">
+              <span>Tìm hiểu sâu</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="anim-buttons pt-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(10)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Chương 5
+          </button>
+          <button onclick="morphToSlide(11, 12, 0)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>KHÁM PHÁ TỪNG GIAI ĐOẠN QUẢN TRỊ</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.1: GIAI ĐOẠN 01 (TRƯỚC KHI KHỚP) -->
+    <section id="slide-12" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FBF5EC] border border-[#EDDBC4] flex items-center justify-center text-[#C07A28] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6V12L16 14" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FBF5EC] border border-[#EDDBC4] text-[#C07A28] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 06 • GIAI ĐOẠN 01 / 03</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Giai Đoạn 01: <span class="text-[#C07A28]">Định Cỡ Vị Thế & Chốt Chặn</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#FBF5EC] border border-[#EDDBC4] flex items-center justify-center text-[#C07A28]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 21l18-18M3 21V3"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">1. Lot Động ATR</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Tự động co giãn Lot theo khoảng cách Stop Loss thực tế. Rủi ro luôn cố định chính xác đúng 1.0% vốn tài khoản.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L4 6v6c0 5.5 3.5 10 8 11 4.5-1 8-5.5 8-11V6l-8-4z"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">2. Khiên Tin Tức</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Đồng bộ lịch kinh tế toàn cầu, đóng băng hệ thống trước và sau 30 phút các tin đỏ bão tố (Non-Farm, CPI, FOMC).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">3. Né Giãn Spread</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Dừng quét và hủy lệnh giờ giao phiên sàn (05:00 - 06:30 VN), triệt tiêu hoàn toàn rủi ro trượt giá oan uổng rạng sáng.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(11)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Tổng quan giai đoạn
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Giai Đoạn 02 • Lệnh Đang Chạy</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.2: GIAI ĐOẠN 02 (LỆNH ĐANG CHẠY) -->
+    <section id="slide-13" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 6V12C4 17.5 7.5 22 12 23C16.5 22 20 17.5 20 12V6L12 2Z" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#EEF6F2] border border-[#C6DFD2] text-[#2D6A4F] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 06 • GIAI ĐOẠN 02 / 03</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Giai Đoạn 02: <span class="text-gradient-mint">Bảo Vệ Vốn & Khóa Lợi Nhuận</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-[#EEF6F2] text-[#2D6A4F] text-[10px] font-mono font-bold">
+                STAGE 1
+              </span>
+              <div class="font-bold text-xs text-[#231C18]">Khóa Hòa Vốn BE+0.5</div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Giá vừa chạm +5.0 giá vàng &rarr; Dời ngay SL về Entry + 0.5$ bù phí sàn, chuyển trạng thái 100% không rủi ro.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-[#EEF6F2] text-[#2D6A4F] text-[10px] font-mono font-bold">
+                STAGE 2
+              </span>
+              <div class="font-bold text-xs text-[#231C18]">Chốt Lời 50% TP1</div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Chạm Fibo 127.2% &rarr; Tự động đóng 50% khối lượng bỏ tiền thật vào tài khoản. Khóa chặt lợi nhuận túi.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-[#EEF6F2] text-[#2D6A4F] text-[10px] font-mono font-bold">
+                STAGE 3
+              </span>
+              <div class="font-bold text-xs text-[#231C18]">Gồng Lãi Runner TP2</div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Vượt Fibo 161.8% &rarr; Neo cứng SL tại TP1 để thả trôi về TP2. Hủy lệnh Limit chạy quá 8.0 giá hoặc hết hạn 4h.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(11)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Giai đoạn trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Tiếp Tục: Giai Đoạn 03 • Sau Khi Đóng</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.3: GIAI ĐOẠN 03 (SAU KHI ĐÓNG LỆNH) -->
+    <section id="slide-14" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-5xl mx-auto space-y-4 sm:space-y-5">
+        
+        <div class="anim-dock-header flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 text-center sm:text-left">
+          <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B] shadow-xs flex-shrink-0 animate-float-smooth">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+            </svg>
+          </div>
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-[10px] font-mono font-bold tracking-widest uppercase mb-1">
+              <span>CHƯƠNG 06 • GIAI ĐOẠN 03 / 03 • HOÀN TẤT CHỦ ĐỀ</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#231C18] font-display">
+              Giai Đoạn 03: <span class="text-gradient-cyan">Cầu Dao Ngắt & Kiểm Soát Tâm Lý</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="anim-card-main boutique-card rounded-3xl p-5 sm:p-7 md:p-8 overflow-hidden relative">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#FDF3EE] border border-[#F3D2C4] flex items-center justify-center text-[#BA4A1B]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">1. Khóa Cooldown 30 Phút</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Dính 1 SL &rarr; Khóa 30 phút (1800s); dính 2 SL liên tiếp &rarr; Đóng băng 4 tiếng triệt tiêu tâm lý trả thù.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#FDF3F0] border border-[#F4D3CE] flex items-center justify-center text-[#B94435]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">2. Daily Loss Breaker</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Chạm ngưỡng sụt giảm ngày (3.0%) tự động ngắt kết nối, hủy toàn bộ lệnh chờ, bảo toàn vốn tuyệt đối.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FAF6F0] border border-[#E8DFD5] space-y-2.5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#EEF6F2] border border-[#C6DFD2] flex items-center justify-center text-[#2D6A4F]">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                </div>
+                <span class="font-bold text-xs text-[#231C18]">3. Telegram 2 Chiều</span>
+              </div>
+              <p class="text-[11px] text-[#7D6E65] leading-relaxed">
+                Mọi hành động đều giải trình rõ ràng gửi về Telegram. Điều chỉnh vốn và can thiệp khẩn cấp: <code>/von</code>, <code>/risk</code>, <code>/reset</code>.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+          <button onclick="goToSlide(11)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#E8DFD5] bg-white text-xs font-semibold text-[#52453E] hover:bg-[#F5EFE9] hover:text-[#231C18] transition-all font-mono shadow-xs">
+            &larr; Giai đoạn trước
+          </button>
+          <button onclick="nextSlide()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>Sang Chương 7: Cam Kết Đồng Hành</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         CHƯƠNG 7: CAM KẾT & HỢP TÁC (THE PARTNERSHIP)
+         ======================================================= -->
+
+    <section id="slide-15" class="slide-section trans-canva-flow">
+      <div class="slide-inner-box max-w-4xl mx-auto space-y-4 sm:space-y-6 text-center">
+        <div class="anim-badge inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FDF3EE] border border-[#F3D2C4] text-[#BA4A1B] text-xs font-mono font-bold tracking-widest uppercase shadow-xs">
+          <span>CHƯƠNG 07 • HỢP TÁC BỀN VỮNG</span>
+        </div>
+
+        <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#231C18] font-display">
+          Hãy Để Công Nghệ <br>
+          <span class="text-gradient-cyan">Giải Phóng Bạn Khỏi Thị Trường</span>
+        </h2>
+
+        <p class="anim-subtext text-xs sm:text-sm text-[#7D6E65] leading-relaxed font-normal">
+          Đầu tư thông minh không phải là làm việc nhiều hơn, mà là ủy thác kỷ luật cho hệ thống máy móc đáng tin cậy nhất.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+          <div class="anim-card-1 boutique-card rounded-2xl p-5 space-y-2.5 border-[#E8DFD5]">
+            <div class="font-bold text-sm text-[#231C18] flex items-center space-x-2 font-display">
+              <span class="text-[#BA4A1B]">✓</span>
+              <span>Minh Bạch 100% Trên Tài Khoản Sàn Của Bạn</span>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Tiền nằm trong tài khoản sàn đứng tên chính bạn. Hệ thống chỉ nhận quyền thực thi giao dịch qua API/IPC, tuyệt đối không ai có thể can thiệp rút tiền.
+            </p>
+          </div>
+
+          <div class="anim-card-2 boutique-card rounded-2xl p-5 space-y-2.5 border-[#E8DFD5]">
+            <div class="font-bold text-sm text-[#231C18] flex items-center space-x-2 font-display">
+              <span class="text-[#2D6A4F]">✓</span>
+              <span>Kiểm Soát 2 Chiều Qua Telegram Tức Thì</span>
+            </div>
+            <p class="text-xs text-[#7D6E65] leading-relaxed">
+              Nhận báo cáo tức thì trên điện thoại. Thay đổi quy mô vốn hoặc bật tắt hệ thống bằng một dòng lệnh đơn giản mọi lúc mọi nơi.
+            </p>
+          </div>
+        </div>
+
+        <div class="anim-buttons pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="goToSlide(0)" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#BA4A1B] hover:bg-[#A33D12] text-white font-semibold text-xs sm:text-sm shadow-lg shadow-[#BA4A1B]/25 border border-[#BA4A1B]/30 hover:scale-[1.015] transition-all flex items-center justify-center space-x-2">
+            <span>↺</span>
+            <span>Xem Lại Từ Đầu (Slide 1)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING PRESENTATION CONTROLS -->
+  <div id="slideDeckNav" class="fixed bottom-3 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-2xl bg-white/95 border border-[#E8DFD5] shadow-xl backdrop-blur-xl">
+    <button onclick="prevSlide()" class="p-1.5 sm:p-2 rounded-xl hover:bg-[#FAF6F0] text-[#52453E] transition-colors" title="Slide trước (Phím mũi tên trái)">
+      &larr;
+    </button>
+    <div class="text-[11px] sm:text-xs font-mono font-bold text-[#231C18] px-2 sm:px-3 border-x border-[#E8DFD5]">
+      <span id="dockSlideNum">1</span> / 16
+    </div>
+    <button onclick="nextSlide()" class="p-1.5 sm:p-2 rounded-xl hover:bg-[#FAF6F0] text-[#52453E] transition-colors" title="Slide tiếp theo (Phím mũi tên phải hoặc Space)">
+      &rarr;
+    </button>
+  </div>
+    </div>
+    <button onclick="nextSlide()" class="p-1.5 sm:p-2 rounded-xl hover:bg-obsidian-800 text-slate-200 transition-colors" title="Slide tiếp theo (Phím mũi tên phải hoặc Space)">
+      &rarr;
+    </button>
+  </div>
+
+  <script>
+    // Chapter Title Mapping
+    const chapterNames = [
+      "Chương 1: Khát Vọng Đích Thực (Tổng Quan)",
+      "Chương 1: Khát Vọng 1 • Tự Do Thời Gian & Tâm Trí",
+      "Chương 1: Khát Vọng 2 • Bảo Toàn Vốn Tuyệt Đối",
+      "Chương 1: Khát Vọng 3 • Tăng Trưởng Bền Vững",
+      "Chương 2: Hiện Thực Khắc Nghiệt (Tổng Quan)",
+      "Chương 2: Bẫy 1 • Lật Kèo Cay Đắng",
+      "Chương 2: Bẫy 2 • Bắt Dao Rơi & FOMO",
+      "Chương 2: Bẫy 3 • Trả Thù Thị Trường",
+      "Chương 3: Bước Ngoặt Tư Duy",
+      "Chương 4: Cỗ Máy AI-Smart-Trade",
+      "Chương 5: Bằng Chứng 25,000 Nến M15 (Ground Truth)",
+      "Chương 6: Quy Chuẩn Quản Trị Quỹ (Tổng Quan)",
+      "Chương 6: Giai Đoạn 01 • Trước Khi Khớp",
+      "Chương 6: Giai Đoạn 02 • Lệnh Đang Chạy",
+      "Chương 6: Giai Đoạn 03 • Sau Khi Đóng",
+      "Chương 7: Cam Kết & Hợp Tác Dài Hạn"
+    ];
+
+    // Canva Transition Modes
+    const transitionModes = [
+      { id: 'canva-flow', icon: '🌊', label: 'Canva Flow', class: 'trans-canva-flow', desc: 'Dòng chảy khí động học & Motion blur' },
+      { id: 'canva-rise', icon: '🚀', label: 'Canva Rise', class: 'trans-canva-rise', desc: 'Dâng lên tinh tế & Spring đàn hồi' },
+      { id: 'canva-stack', icon: '🗂️', label: 'Canva Stack', class: 'trans-canva-stack', desc: 'Chồng thẻ 3D bóng đổ chiều sâu' },
+      { id: 'canva-wipe', icon: '🎬', label: 'Canva Wipe', class: 'trans-canva-wipe', desc: 'Quét rèm điện ảnh sắc sảo' },
+      { id: 'canva-dissolve', icon: '🌫️', label: 'Canva Dissolve', class: 'trans-canva-dissolve', desc: 'Hòa tan quang học mờ ảo' },
+      { id: 'canva-pop', icon: '💫', label: 'Canva Pop', class: 'trans-canva-pop', desc: 'Bung nở nảy lò xo sinh động' }
+    ];
+    let currentTransitionIdx = 0;
+
+    function toggleTransitionMenu(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('transitionMenu');
+      if (menu) {
+        menu.classList.toggle('hidden');
+      }
+    }
+
+    function setTransitionMode(idx) {
+      if (idx >= 0 && idx < transitionModes.length) {
+        currentTransitionIdx = idx;
+        const currentMode = transitionModes[currentTransitionIdx];
+        
+        document.getElementById('transitionIcon').textContent = currentMode.icon;
+        document.getElementById('transitionLabel').textContent = currentMode.label;
+
+        // Update checkmarks in dropdown
+        for (let i = 0; i < transitionModes.length; i++) {
+          const chk = document.getElementById('check-' + i);
+          if (chk) {
+            chk.classList.toggle('hidden', i !== currentTransitionIdx);
+          }
+        }
+
+        // Apply new transition class to all slides
+        for (let i = 0; i < totalSlides; i++) {
+          const el = document.getElementById('slide-' + i);
+          if (el) {
+            transitionModes.forEach(m => el.classList.remove(m.class));
+            el.classList.add(currentMode.class);
+          }
+        }
+
+        triggerPageBeam();
+
+        // Close menu
+        const menu = document.getElementById('transitionMenu');
+        if (menu) menu.classList.add('hidden');
+      }
+    }
+
+    function cycleTransitionEffect() {
+      const nextIdx = (currentTransitionIdx + 1) % transitionModes.length;
+      setTransitionMode(nextIdx);
+    }
+
+    // Close menu when clicking outside
+    window.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('canvaTransitionDropdown');
+      const menu = document.getElementById('transitionMenu');
+      if (dropdown && menu && !dropdown.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    function triggerPageBeam() {
+      const beam = document.getElementById('topProgressBeam');
+      if (beam) {
+        beam.classList.remove('beam-sweep');
+        void beam.offsetWidth;
+        beam.classList.add('beam-sweep');
+      }
+    }
+
+    // Theme Management (Defaults to Warm Nude Porcelain & Terracotta)
+    function setTheme(isDark) {
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').textContent = '☀️';
+        localStorage.setItem('ast_theme_v2', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('themeIcon').textContent = '🌙';
+        localStorage.setItem('ast_theme_v2', 'light');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(!isDark);
+    }
+
+    // Default strictly to Warm Nude & Terracotta Theme
+    if (localStorage.getItem('ast_theme_v2') === 'dark') {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
+
+    // Slide Deck Presentation Logic
+    const totalSlides = 16;
+    let currentSlide = 0;
+    let isMorphing = false;
+
+    // Morph Transition Orchestrator (Magic Move)
+    // =========================================================
+    // TRUE KEYNOTE / CANVA FLIP MAGIC MOVE ENGINE
+    // =========================================================
+    function morphToSlide(fromSlideIdx, targetSlideIdx, selectedCardIdx) {
+      if (isMorphing) return;
+      const fromEl = document.getElementById('slide-' + fromSlideIdx);
+      const targetEl = document.getElementById('slide-' + targetSlideIdx);
+      if (!fromEl || !targetEl) {
+        goToSlide(targetSlideIdx);
+        return;
+      }
+
+      isMorphing = true;
+      triggerPageBeam();
+
+      const cards = fromEl.querySelectorAll('.anim-card-1, .anim-card-2, .anim-card-3, .monolith-col, .boutique-card');
+      const selectedCard = cards[selectedCardIdx] || cards[0];
+      const sourceIcon = selectedCard ? (selectedCard.querySelector('.w-11, .w-12, .w-13, .w-14, .rounded-2xl') || selectedCard.querySelector('svg')?.parentElement || selectedCard) : null;
+      const sourceTitle = selectedCard ? (selectedCard.querySelector('h3') || selectedCard.querySelector('h2') || selectedCard) : null;
+      const sourceKicker = selectedCard ? selectedCard.querySelector('span.text-\\[10px\\], span.font-mono, .anim-badge') : null;
+
+      if (!sourceIcon || !sourceTitle) {
+        currentSlide = targetSlideIdx;
+        updateSlideVisibility('right');
+        isMorphing = false;
+        return;
+      }
+
+      // 1. Measure EXACT START coordinates on source slide BEFORE touching layout
+      const iconRect = sourceIcon.getBoundingClientRect();
+      const titleRect = sourceTitle.getBoundingClientRect();
+      const kickerRect = sourceKicker ? sourceKicker.getBoundingClientRect() : null;
+      const srcTitleStyle = window.getComputedStyle(sourceTitle);
+      const srcIconSvg = sourceIcon.querySelector('svg');
+      const srcIconSvgRect = srcIconSvg ? srcIconSvg.getBoundingClientRect() : null;
+
+      // 2. All unselected elements on source slide glide smoothly to the left
+      const unselectedElements = fromEl.querySelectorAll('.anim-badge, .anim-title, .anim-subtext, .anim-buttons');
+      unselectedElements.forEach(el => el.classList.add('morph-fade-left'));
+      cards.forEach((card, idx) => {
+        if (idx !== selectedCardIdx) {
+          card.classList.add('morph-fade-left');
+        }
+      });
+
+      // 3. Temporarily position targetEl ABSOLUTELY so it overlaps exactly where it will settle
+      targetEl.style.position = 'absolute';
+      targetEl.style.top = '0';
+      targetEl.style.left = '0';
+      targetEl.style.right = '0';
+      targetEl.style.width = '100%';
+      targetEl.style.zIndex = '20';
+      targetEl.classList.add('active-slide', 'is-morphing-slide');
+      targetEl.scrollTop = 0;
+
+      const targetHeader = targetEl.querySelector('.anim-dock-header');
+      if (targetHeader) {
+        targetHeader.style.animation = 'none';
+        targetHeader.style.transform = 'none';
+      }
+
+      const targetMain = targetEl.querySelector('.anim-card-main, .slide-inner-box > div:not(.anim-dock-header)');
+      if (targetMain) {
+        targetMain.style.transition = 'none';
+        targetMain.style.opacity = '0';
+        targetMain.style.transform = 'translate3d(0, 32px, 0)';
+      }
+
+      // 4. Measure exact DESTINATION elements and coordinates at the header
+      const destIcon = targetHeader ? (targetHeader.querySelector('.w-13, .w-14, .w-12, .w-11, .rounded-2xl') || targetHeader) : null;
+      const destBadge = targetHeader ? targetHeader.querySelector('.inline-flex, .rounded-full') : null;
+      const destH2 = targetHeader ? targetHeader.querySelector('h2') : null;
+      const destSpan = destH2 ? destH2.querySelector('span') : null;
+      const destIconSvg = destIcon ? destIcon.querySelector('svg') : null;
+
+      const destIconRect = destIcon ? destIcon.getBoundingClientRect() : { left: 165, top: 118, width: 56, height: 56 };
+      const destBadgeRect = destBadge ? destBadge.getBoundingClientRect() : null;
+      const destH2Rect = destH2 ? destH2.getBoundingClientRect() : { left: 237, top: 118, width: 612, height: 40 };
+      const destIconSvgRect = destIconSvg ? destIconSvg.getBoundingClientRect() : null;
+      const destH2Style = destH2 ? window.getComputedStyle(destH2) : { fontSize: '36px', fontWeight: '800' };
+
+      // Determine target color and prefix text
+      let prefixText = "";
+      if (destH2) {
+        const fullText = destH2.textContent || "";
+        const spanText = destSpan ? (destSpan.textContent || "") : "";
+        if (spanText && fullText.includes(spanText)) {
+          prefixText = fullText.substring(0, fullText.indexOf(spanText)).trim();
+          if (prefixText) prefixText += " ";
+        }
+      }
+      const spanText = destSpan ? destSpan.textContent.trim() : (sourceTitle.textContent.trim());
+
+      // Target color resolution
+      let targetColor = '#BA4A1B'; // Default terracotta
+      if (destSpan) {
+        if (destSpan.classList.contains('text-gradient-cyan')) targetColor = '#BA4A1B';
+        else if (destSpan.classList.contains('text-gradient-aurora')) targetColor = '#C07A28';
+        else if (destSpan.classList.contains('text-gradient-mint')) targetColor = '#2E7D5E';
+        else if (destSpan.classList.contains('text-[#B94435]') || destSpan.className.includes('B94435')) targetColor = '#B94435';
+        else {
+          const compColor = window.getComputedStyle(destSpan).color;
+          if (compColor && compColor !== 'rgba(0, 0, 0, 0)') targetColor = compColor;
+        }
+      }
+
+      // Hide targetHeader and selectedCard during morph flight
+      if (targetHeader) {
+        targetHeader.style.opacity = '0';
+        targetHeader.style.visibility = 'hidden';
+      }
+      selectedCard.style.opacity = '0';
+
+      // 5. Create high-performance floating FLIP clone stage
+      const stage = document.createElement('div');
+      stage.id = 'magic-glide-stage';
+      stage.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:99999;';
+
+      // --- A. Flying Icon ---
+      const flyIcon = sourceIcon.cloneNode(true);
+      flyIcon.id = 'fly-icon-node';
+      flyIcon.style.cssText = `position:fixed;left:${iconRect.left}px;top:${iconRect.top}px;width:${iconRect.width}px;height:${iconRect.height}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);transform-origin:top left;border-radius:1rem;box-shadow:0 6px 18px rgba(186,74,27,0.12);display:flex;align-items:center;justify-content:center;`;
+      const flySvg = flyIcon.querySelector('svg');
+      if (flySvg) {
+        flySvg.style.transition = 'all 0.72s cubic-bezier(0.16, 1, 0.3, 1)';
+        flySvg.style.width = `${srcIconSvgRect ? srcIconSvgRect.width : 20}px`;
+        flySvg.style.height = `${srcIconSvgRect ? srcIconSvgRect.height : 20}px`;
+      }
+      stage.appendChild(flyIcon);
+
+      // --- B. Flying Badge (if destBadge exists) ---
+      let flyBadge = null;
+      if (destBadge && destBadgeRect) {
+        flyBadge = destBadge.cloneNode(true);
+        const startBadgeX = kickerRect ? kickerRect.left : titleRect.left;
+        const startBadgeY = kickerRect ? kickerRect.top : (titleRect.top - 24);
+        flyBadge.style.cssText = `position:fixed;left:${startBadgeX}px;top:${startBadgeY}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;opacity:0.3;transform:scale(0.9);transform-origin:top left;transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);`;
+        stage.appendChild(flyBadge);
+      }
+
+      // --- C. Flying Header Title (Container with Expanding Prefix & Color-Morphing Title) ---
+      const flyTitle = document.createElement('div');
+      flyTitle.id = 'fly-title-node';
+      flyTitle.style.cssText = `position:fixed;left:${titleRect.left}px;top:${titleRect.top}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);transform-origin:top left;white-space:nowrap;display:flex;align-items:baseline;font-family:'Cabinet Grotesk',sans-serif;line-height:1.2;`;
+
+      const flyPrefix = document.createElement('span');
+      flyPrefix.textContent = prefixText;
+      flyPrefix.style.cssText = `display:inline-block;max-width:0px;opacity:0;overflow:hidden;white-space:nowrap;margin-right:0px;color:#231C18;font-weight:800;font-size:${srcTitleStyle.fontSize};transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);vertical-align:baseline;`;
+
+      const flySpanWrap = document.createElement('span');
+      flySpanWrap.style.cssText = `position:relative;display:inline-block;vertical-align:baseline;line-height:1.2;`;
+
+      const flySpanBase = document.createElement('span');
+      flySpanBase.textContent = spanText;
+      flySpanBase.style.cssText = `display:inline-block;color:#231C18;font-weight:700;font-size:${srcTitleStyle.fontSize};transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);opacity:1;vertical-align:baseline;`;
+
+      const flySpanGrad = document.createElement('span');
+      flySpanGrad.textContent = spanText;
+      flySpanGrad.style.cssText = `position:absolute;left:0;top:0;display:inline-block;color:${targetColor};font-weight:800;font-size:${srcTitleStyle.fontSize};transition:all 0.72s cubic-bezier(0.16, 1, 0.3, 1);opacity:0;vertical-align:baseline;`;
+
+      flySpanWrap.appendChild(flySpanBase);
+      flySpanWrap.appendChild(flySpanGrad);
+
+      flyTitle.appendChild(flyPrefix);
+      flyTitle.appendChild(flySpanWrap);
+      stage.appendChild(flyTitle);
+
+      document.body.appendChild(stage);
+
+      // 6. Trigger silky smooth gliding animation: FLY UPWARDS & MORPH INTO HEADER!
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Icon glides to destination & expands smoothly
+          flyIcon.style.left = destIconRect.left + 'px';
+          flyIcon.style.top = destIconRect.top + 'px';
+          flyIcon.style.width = destIconRect.width + 'px';
+          flyIcon.style.height = destIconRect.height + 'px';
+          flyIcon.style.boxShadow = '0 12px 28px rgba(186,74,27,0.18)';
+          if (flySvg) {
+            flySvg.style.width = `${destIconSvgRect ? destIconSvgRect.width : 28}px`;
+            flySvg.style.height = `${destIconSvgRect ? destIconSvgRect.height : 28}px`;
+          }
+
+          // Badge glides to destination & blooms smoothly
+          if (flyBadge && destBadgeRect) {
+            flyBadge.style.left = destBadgeRect.left + 'px';
+            flyBadge.style.top = destBadgeRect.top + 'px';
+            flyBadge.style.opacity = '1';
+            flyBadge.style.transform = 'scale(1)';
+          }
+
+          // Title glides to destH2 position, unfolds prefix, expands font size, and transitions color!
+          flyTitle.style.left = destH2Rect.left + 'px';
+          flyTitle.style.top = destH2Rect.top + 'px';
+
+          flyPrefix.style.maxWidth = '320px';
+          flyPrefix.style.opacity = '1';
+          flyPrefix.style.marginRight = '8px';
+          flyPrefix.style.fontSize = destH2Style.fontSize;
+
+          flySpanBase.style.fontSize = destH2Style.fontSize;
+          flySpanBase.style.fontWeight = '800';
+          flySpanBase.style.opacity = '0';
+
+          flySpanGrad.style.fontSize = destH2Style.fontSize;
+          flySpanGrad.style.fontWeight = '800';
+          flySpanGrad.style.opacity = '1';
+
+          // Target main content reveals gently
+          if (targetMain) {
+            targetMain.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s';
+            targetMain.style.opacity = '1';
+            targetMain.style.transform = 'translate3d(0, 0, 0)';
+          }
+        });
+      });
+
+      // 7. Settle and seamlessly hand off to target header
+      setTimeout(() => {
+        fromEl.classList.remove('active-slide');
+        targetEl.classList.remove('is-morphing-slide');
+        targetEl.style.position = '';
+        targetEl.style.top = '';
+        targetEl.style.left = '';
+        targetEl.style.right = '';
+        targetEl.style.width = '';
+        targetEl.style.zIndex = '';
+
+        unselectedElements.forEach(el => {
+          el.classList.remove('morph-fade-left');
+          el.style.opacity = '';
+          el.style.transform = '';
+          el.style.filter = '';
+        });
+        cards.forEach(card => {
+          card.classList.remove('morph-fade-left');
+          card.style.opacity = '';
+          card.style.transform = '';
+          card.style.filter = '';
+        });
+        if (selectedCard) {
+          selectedCard.style.opacity = '';
+          selectedCard.style.transform = '';
+          selectedCard.style.filter = '';
+        }
+        if (targetHeader) {
+          targetHeader.style.opacity = '1';
+          targetHeader.style.visibility = 'visible';
+          targetHeader.style.animation = '';
+          targetHeader.style.transform = '';
+        }
+        if (stage && stage.parentNode) stage.parentNode.removeChild(stage);
+
+        currentSlide = targetSlideIdx;
+        document.getElementById('dockSlideNum').textContent = currentSlide + 1;
+        document.getElementById('slideNumberDisplay').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        document.getElementById('storyChapterBreadcrumb').textContent = chapterNames[currentSlide] || "AI-Smart-Trade Story";
+        updateDots();
+        isMorphing = false;
+      }, 740);
+    }
+
+    // Reverse FLIP Magic Move back to Overview
+    function morphBackToOverview(fromSlideIdx, overviewSlideIdx, targetCardIdx) {
+      if (isMorphing) return;
+      const fromEl = document.getElementById('slide-' + fromSlideIdx);
+      const overviewEl = document.getElementById('slide-' + overviewSlideIdx);
+      if (!fromEl || !overviewEl) {
+        goToSlide(overviewSlideIdx);
+        return;
+      }
+
+      isMorphing = true;
+      triggerPageBeam();
+
+      const sourceHeader = fromEl.querySelector('.anim-dock-header');
+      const sourceIcon = sourceHeader ? (sourceHeader.querySelector('.w-13, .w-14, .w-12, .w-11, .rounded-2xl') || sourceHeader) : null;
+      const sourceH2 = sourceHeader ? sourceHeader.querySelector('h2') : null;
+      const sourceSpan = sourceH2 ? sourceH2.querySelector('span') : null;
+      const sourceBadge = sourceHeader ? sourceHeader.querySelector('.inline-flex, .rounded-full') : null;
+      const sourceMain = fromEl.querySelector('.anim-card-main, .boutique-card');
+
+      if (!sourceIcon || !sourceH2) {
+        currentSlide = overviewSlideIdx;
+        updateSlideVisibility('left');
+        isMorphing = false;
+        return;
+      }
+
+      // 1. Measure START coordinates from source header while fromEl is at undisturbed top position
+      const startIconRect = sourceIcon.getBoundingClientRect();
+      const startH2Rect = sourceH2.getBoundingClientRect();
+      const startBadgeRect = sourceBadge ? sourceBadge.getBoundingClientRect() : null;
+      const startH2Style = window.getComputedStyle(sourceH2);
+      const startIconSvg = sourceIcon.querySelector('svg');
+      const startIconSvgRect = startIconSvg ? startIconSvg.getBoundingClientRect() : null;
+
+      // Determine prefix text and span text
+      let prefixText = "";
+      const fullText = sourceH2.textContent || "";
+      const spanText = sourceSpan ? (sourceSpan.textContent || "") : "";
+      if (spanText && fullText.includes(spanText)) {
+        prefixText = fullText.substring(0, fullText.indexOf(spanText)).trim();
+        if (prefixText) prefixText += " ";
+      }
+
+      // Target color from sourceSpan
+      let startColor = '#BA4A1B';
+      if (sourceSpan) {
+        if (sourceSpan.classList.contains('text-gradient-cyan')) startColor = '#BA4A1B';
+        else if (sourceSpan.classList.contains('text-gradient-aurora')) startColor = '#C07A28';
+        else if (sourceSpan.classList.contains('text-gradient-mint')) startColor = '#2E7D5E';
+        else if (sourceSpan.classList.contains('text-[#B94435]') || sourceSpan.className.includes('B94435')) startColor = '#B94435';
+      }
+
+      // 2. Position overviewEl ABSOLUTELY so it overlaps perfectly without pushing fromEl down
+      overviewEl.style.position = 'absolute';
+      overviewEl.style.top = '0';
+      overviewEl.style.left = '0';
+      overviewEl.style.right = '0';
+      overviewEl.style.width = '100%';
+      overviewEl.style.zIndex = '20';
+      overviewEl.classList.add('active-slide', 'is-morphing-slide');
+      overviewEl.scrollTop = 0;
+
+      const cards = overviewEl.querySelectorAll('.anim-card-1, .anim-card-2, .anim-card-3, .monolith-col, .boutique-card');
+      const targetCard = cards[targetCardIdx] || cards[0];
+      const targetIcon = targetCard ? (targetCard.querySelector('.w-11, .w-12, .w-13, .w-14, .rounded-2xl') || targetCard.querySelector('svg')?.parentElement || targetCard) : null;
+      const targetTitle = targetCard ? (targetCard.querySelector('h3') || targetCard.querySelector('h2') || targetCard) : null;
+      const targetKicker = targetCard ? targetCard.querySelector('span.text-\\[10px\\], span.font-mono, .anim-badge') : null;
+      const targetIconSvg = targetIcon ? targetIcon.querySelector('svg') : null;
+
+      const destIconRect = targetIcon ? targetIcon.getBoundingClientRect() : { left: 200, top: 400, width: 44, height: 44 };
+      const destTitleRect = targetTitle ? targetTitle.getBoundingClientRect() : { left: 200, top: 460, width: 280, height: 30 };
+      const destKickerRect = targetKicker ? targetKicker.getBoundingClientRect() : null;
+      const destIconSvgRect = targetIconSvg ? targetIconSvg.getBoundingClientRect() : null;
+      const destTitleStyle = targetTitle ? window.getComputedStyle(targetTitle) : { fontSize: '18px' };
+
+      // 3. Create FLIP clone stage
+      const stage = document.createElement('div');
+      stage.id = 'magic-glide-stage';
+      stage.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:99999;';
+
+      // --- A. Flying Icon Back ---
+      const flyIcon = sourceIcon.cloneNode(true);
+      flyIcon.style.cssText = `position:fixed;left:${startIconRect.left}px;top:${startIconRect.top}px;width:${startIconRect.width}px;height:${startIconRect.height}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);transform-origin:top left;border-radius:1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(186,74,27,0.18);`;
+      const flySvg = flyIcon.querySelector('svg');
+      if (flySvg) {
+        flySvg.style.transition = 'all 0.68s cubic-bezier(0.16, 1, 0.3, 1)';
+        flySvg.style.width = `${startIconSvgRect ? startIconSvgRect.width : 28}px`;
+        flySvg.style.height = `${startIconSvgRect ? startIconSvgRect.height : 28}px`;
+      }
+      stage.appendChild(flyIcon);
+
+      // --- B. Flying Badge Back ---
+      let flyBadge = null;
+      if (sourceBadge && startBadgeRect) {
+        flyBadge = sourceBadge.cloneNode(true);
+        flyBadge.style.cssText = `position:fixed;left:${startBadgeRect.left}px;top:${startBadgeRect.top}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);transform-origin:top left;opacity:1;`;
+        stage.appendChild(flyBadge);
+      }
+
+      // --- C. Flying Title Back ---
+      const flyTitle = document.createElement('div');
+      flyTitle.style.cssText = `position:fixed;left:${startH2Rect.left}px;top:${startH2Rect.top}px;margin:0;box-sizing:border-box;z-index:100000;will-change:all;transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);transform-origin:top left;white-space:nowrap;display:flex;align-items:baseline;font-family:'Cabinet Grotesk',sans-serif;line-height:1.2;`;
+
+      const flyPrefix = document.createElement('span');
+      flyPrefix.textContent = prefixText;
+      flyPrefix.style.cssText = `display:inline-block;max-width:320px;opacity:1;overflow:hidden;white-space:nowrap;margin-right:8px;color:#231C18;font-weight:800;font-size:${startH2Style.fontSize};transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);vertical-align:baseline;`;
+
+      const flySpanWrap = document.createElement('span');
+      flySpanWrap.style.cssText = `position:relative;display:inline-block;vertical-align:baseline;line-height:1.2;`;
+
+      const flySpanBase = document.createElement('span');
+      flySpanBase.textContent = spanText || (targetTitle ? targetTitle.textContent.trim() : "");
+      flySpanBase.style.cssText = `display:inline-block;color:#231C18;font-weight:700;font-size:${startH2Style.fontSize};transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);opacity:0;vertical-align:baseline;`;
+
+      const flySpanGrad = document.createElement('span');
+      flySpanGrad.textContent = spanText || (targetTitle ? targetTitle.textContent.trim() : "");
+      flySpanGrad.style.cssText = `position:absolute;left:0;top:0;display:inline-block;color:${startColor};font-weight:800;font-size:${startH2Style.fontSize};transition:all 0.68s cubic-bezier(0.16, 1, 0.3, 1);opacity:1;vertical-align:baseline;`;
+
+      flySpanWrap.appendChild(flySpanBase);
+      flySpanWrap.appendChild(flySpanGrad);
+
+      flyTitle.appendChild(flyPrefix);
+      flyTitle.appendChild(flySpanWrap);
+      stage.appendChild(flyTitle);
+
+      document.body.appendChild(stage);
+
+      if (sourceHeader) sourceHeader.style.opacity = '0';
+      if (targetCard) targetCard.style.opacity = '0';
+
+      if (sourceMain) {
+        sourceMain.style.transition = 'all 0.4s ease';
+        sourceMain.style.opacity = '0';
+        sourceMain.style.transform = 'translate3d(0, 30px, 0)';
+      }
+
+      const overviewOthers = overviewEl.querySelectorAll('.anim-badge, .anim-title, .anim-subtext, .anim-buttons');
+      overviewOthers.forEach(el => {
+        el.style.transition = 'none';
+        el.style.opacity = '0';
+        el.style.transform = 'translate3d(-50px, 0, 0)';
+      });
+      cards.forEach((c, i) => {
+        if (i !== targetCardIdx) {
+          c.style.transition = 'none';
+          c.style.opacity = '0';
+          c.style.transform = 'translate3d(-50px, 0, 0)';
+        }
+      });
+
+      // 4. Glide DOWNWARDS back into the card
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          flyIcon.style.left = destIconRect.left + 'px';
+          flyIcon.style.top = destIconRect.top + 'px';
+          flyIcon.style.width = destIconRect.width + 'px';
+          flyIcon.style.height = destIconRect.height + 'px';
+          flyIcon.style.boxShadow = '0 6px 18px rgba(186,74,27,0.1)';
+          if (flySvg) {
+            flySvg.style.width = `${destIconSvgRect ? destIconSvgRect.width : 20}px`;
+            flySvg.style.height = `${destIconSvgRect ? destIconSvgRect.height : 20}px`;
+          }
+
+          if (flyBadge && destKickerRect) {
+            flyBadge.style.left = destKickerRect.left + 'px';
+            flyBadge.style.top = destKickerRect.top + 'px';
+            flyBadge.style.opacity = '0';
+            flyBadge.style.transform = 'scale(0.8)';
+          }
+
+          flyTitle.style.left = destTitleRect.left + 'px';
+          flyTitle.style.top = destTitleRect.top + 'px';
+
+          flyPrefix.style.maxWidth = '0px';
+          flyPrefix.style.opacity = '0';
+          flyPrefix.style.marginRight = '0px';
+          flyPrefix.style.fontSize = destTitleStyle.fontSize;
+
+          flySpanBase.style.fontSize = destTitleStyle.fontSize;
+          flySpanBase.style.fontWeight = '700';
+          flySpanBase.style.opacity = '1';
+
+          flySpanGrad.style.fontSize = destTitleStyle.fontSize;
+          flySpanGrad.style.fontWeight = '700';
+          flySpanGrad.style.opacity = '0';
+
+          overviewOthers.forEach(el => {
+            el.style.transition = 'all 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.08s';
+            el.style.opacity = '1';
+            el.style.transform = 'translate3d(0, 0, 0)';
+          });
+          cards.forEach((c, i) => {
+            if (i !== targetCardIdx) {
+              c.style.transition = 'all 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.12s';
+              c.style.opacity = '1';
+              c.style.transform = 'translate3d(0, 0, 0)';
+            }
+          });
+        });
+      });
+
+      // 5. Settle and clean up
+      setTimeout(() => {
+        fromEl.classList.remove('active-slide');
+        overviewEl.classList.remove('is-morphing-slide');
+        overviewEl.style.position = '';
+        overviewEl.style.top = '';
+        overviewEl.style.left = '';
+        overviewEl.style.right = '';
+        overviewEl.style.width = '';
+        overviewEl.style.zIndex = '';
+
+        if (sourceHeader) sourceHeader.style.opacity = '';
+        if (sourceMain) {
+          sourceMain.style.opacity = '';
+          sourceMain.style.transform = '';
+        }
+        if (targetCard) targetCard.style.opacity = '';
+        overviewOthers.forEach(el => {
+          el.style.transition = '';
+          el.style.opacity = '';
+          el.style.transform = '';
+        });
+        cards.forEach(c => {
+          c.style.transition = '';
+          c.style.opacity = '';
+          c.style.transform = '';
+        });
+        if (stage && stage.parentNode) stage.parentNode.removeChild(stage);
+
+        currentSlide = overviewSlideIdx;
+        document.getElementById('dockSlideNum').textContent = currentSlide + 1;
+        document.getElementById('slideNumberDisplay').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        document.getElementById('storyChapterBreadcrumb').textContent = chapterNames[currentSlide] || "AI-Smart-Trade Story";
+        updateDots();
+        isMorphing = false;
+      }, 700);
+    }
+
+    let isInitialLoad = true;
+
+    function updateSlideVisibility(direction = 'right') {
+      triggerPageBeam();
+
+      // Cleanse all temporary morph classes and inline overrides across all slides
+      document.querySelectorAll('.morph-fade-left, .morph-glide-target').forEach(el => {
+        el.classList.remove('morph-fade-left', 'morph-glide-target');
+        el.style.opacity = '';
+        el.style.transform = '';
+        el.style.filter = '';
+      });
+      document.querySelectorAll('.anim-dock-header, .anim-card-main, .boutique-card, .anim-badge, .anim-title, .anim-subtext, .anim-card-1, .anim-card-2, .anim-card-3, .anim-buttons').forEach(el => {
+        el.style.opacity = '';
+        el.style.transform = '';
+      });
+      const leftoverStage = document.getElementById('magic-glide-stage');
+      if (leftoverStage) leftoverStage.remove();
+
+      for (let i = 0; i < totalSlides; i++) {
+        const el = document.getElementById('slide-' + i);
+        if (el) {
+          el.classList.remove('slide-enter-right', 'slide-enter-left', 'slide-enter-morph');
+          if (i === currentSlide) {
+            el.classList.add('active-slide');
+            if (!isInitialLoad) {
+              if (direction === 'morph') {
+                el.classList.add('slide-enter-morph');
+              } else if (direction === 'right') {
+                el.classList.add('slide-enter-right');
+              } else {
+                el.classList.add('slide-enter-left');
+              }
+            }
+            el.scrollTop = 0;
+          } else {
+            el.classList.remove('active-slide');
+          }
+        }
+      }
+      isInitialLoad = false;
+      document.getElementById('dockSlideNum').textContent = currentSlide + 1;
+      document.getElementById('slideNumberDisplay').textContent = `${currentSlide + 1} / ${totalSlides}`;
+      document.getElementById('storyChapterBreadcrumb').textContent = chapterNames[currentSlide] || "AI-Smart-Trade Story";
+      updateDots();
+    }
+
+    function goToSlide(index) {
+      if (isMorphing) return;
+      if (index >= 0 && index < totalSlides) {
+        if (currentSlide === 0 && index >= 1 && index <= 3) {
+          morphToSlide(0, index, index - 1);
+          return;
+        }
+        if (currentSlide === 4 && index >= 5 && index <= 7) {
+          morphToSlide(4, index, index - 5);
+          return;
+        }
+        if (currentSlide === 11 && index >= 12 && index <= 14) {
+          morphToSlide(11, index, index - 12);
+          return;
+        }
+
+        const dir = index > currentSlide ? 'right' : 'left';
+        currentSlide = index;
+        updateSlideVisibility(dir);
+      }
+    }
+
+    function nextSlide() {
+      if (isMorphing) return;
+      if (currentSlide === 0) {
+        morphToSlide(0, 1, 0);
+      } else if (currentSlide === 4) {
+        morphToSlide(4, 5, 0);
+      } else if (currentSlide === 11) {
+        morphToSlide(11, 12, 0);
+      } else if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlideVisibility('right');
+      }
+    }
+
+    function prevSlide() {
+      if (isMorphing) return;
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlideVisibility('left');
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+
+    // Create interactive dots in header
+    function initDots() {
+      const container = document.getElementById('slideDotsContainer');
+      container.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `h-2 rounded-full transition-all ${i === currentSlide ? 'bg-[#BA4A1B] w-5 shadow-xs shadow-[#BA4A1B]/30' : 'bg-[#E5DDD3] hover:bg-[#D5C7B8] w-1.5'}`;
+        dot.title = chapterNames[i];
+        dot.onclick = () => goToSlide(i);
+        container.appendChild(dot);
+      }
+    }
+
+    function updateDots() {
+      const dots = document.getElementById('slideDotsContainer').children;
+      for (let i = 0; i < dots.length; i++) {
+        if (i === currentSlide) {
+          dots[i].className = 'w-5 h-2 rounded-full bg-[#BA4A1B] shadow-xs shadow-[#BA4A1B]/30 transition-all';
+        } else {
+          dots[i].className = 'w-1.5 h-2 rounded-full bg-[#E5DDD3] hover:bg-[#D5C7B8] transition-all';
+        }
+      }
+    }
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      initDots();
+      updateSlideVisibility();
+    });
+  </script>
+</body>
+</html>
